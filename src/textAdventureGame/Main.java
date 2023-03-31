@@ -74,6 +74,7 @@ public class Main {
 	static void setup() {
 		Room.setupRooms(roomList);
 		currentRoom = "Middle of the Ocean";  //where you start
+		//hiiiii
 	}
 
 }
