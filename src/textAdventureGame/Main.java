@@ -50,6 +50,9 @@ public class Main {
 	}
 
 	private static void lookAtRoom(boolean b) {
+		//debug. Something is wrong somewhere else
+		currentRoom = "backyard"; //delete this line
+		
 		Room rm = roomList.get(currentRoom);
 		System.out.println("\n== " + rm.getTitle() + " ==");
 		System.out.println(rm.getDesc());	
