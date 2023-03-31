@@ -1,5 +1,6 @@
 package textAdventureGame;
-
+/* Zaid and Prayag
+*/	
 import java.util.HashMap;
 import java.util.Scanner;
 
