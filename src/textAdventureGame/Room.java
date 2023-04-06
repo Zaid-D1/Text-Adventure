@@ -40,17 +40,17 @@ class Room {
 	
 	//ONLY done at the beginning of the game
 	static void setupRooms(HashMap<String,Room> roomList) {
-		Room r = new Room("Back yard", "The garden is peaceful with flowers, birds");
+		Room r = new Room("The Ocean", "The vast, and soundless ocean");
 		//          N S W E
-		r.setExits("", "park", "den", "kitchen");
-		roomList.put("backyard", r);
+		r.setExits("", "Kelp forrest", "cave", "Shipwreck");
+		roomList.put("The Ocean", r);
 		
-		r = new Room("The Kitchen", "You see a fridge, stove, cubpoards. "
-				+ "The hallway is to the west, east takes you to the back yard");
-		r.setExits("", "", "hall1", "backyard");
-		roomList.put("kitchen", r);
+		r = new Room("The Kelp forrest", "You see giant kelp all around, a fish skeleton, water proof notebook. "
+				+ "The opeaning to the forrest is to the east, west takes you back to the still waters");
+		r.setExits("", "", "still waters", "The Ocean");
+		roomList.put("Kelp forrest", r);
 		
-		r = new Room("Hallway", "The front hallway connects the front door to the kitchen, living room,"
+		r = new Room("Hallwa", "The front hallway connects the front door to the kitchen, living room,"
 				+ " bedrooms (south) and den (down)"); 
 		r.setExits("frontYard", "bedroom1", "livingroom", "kitchen");
 		roomList.put("hall1", r);
