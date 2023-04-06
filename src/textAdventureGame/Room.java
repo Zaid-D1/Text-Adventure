@@ -50,10 +50,16 @@ class Room {
 		r.setExits("", "", "still waters", "The Ocean");
 		roomList.put("Kelp forrest", r);
 		
-		r = new Room("Hallwa", "The front hallway connects the front door to the kitchen, living room,"
-				+ " bedrooms (south) and den (down)"); 
-		r.setExits("frontYard", "bedroom1", "livingroom", "kitchen");
-		roomList.put("hall1", r);
+		r = new Room("The Cave", "dark and gloomy, open your water proof flashlight to look around"
+				+ "Still waters (east), Kelp forrest (east x2)"); 
+		r.setExits("still waters", "Kelp forrest", "", "");
+		roomList.put("The Cave", r);
+		
+		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"
+				+ "You see a door on deck leading to the captians room, and one more door leading towards the ships kitchen"
+				+ "Still waters (North)"); 
+		r.setExits("still waters", "", "", "");
+		roomList.put("Ship wreck", r);
 	}
 }
   
