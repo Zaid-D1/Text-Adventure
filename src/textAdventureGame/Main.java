@@ -121,7 +121,7 @@ public class Main {
 		Room.setupRooms(roomList);
 		Room.setupItems(itemList);
 		currentRoom = "backyard";  //where you start
-	}
+}
 
 //	static void title() {
 //		//Used a website that can convert any sentence or words into ASCII Art (pretty cool), here is the 
