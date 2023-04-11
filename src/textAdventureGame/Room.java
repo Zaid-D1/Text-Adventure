@@ -9,15 +9,12 @@ class Room {
 	private String description;	
 	private String N,S,E,W;
 	
-	// items in this room FIXME (should this be private?)
-	ArrayList<Item> itemList = new ArrayList<Item>();
-	
 	Room(String t, String d) {
 		title = t;
 		description = d;
 	}
 	
-	//FIXME should this be private?
+
 	private void setExits(String N, String S, String W, String E) {
 		this.N = N;
 		this.S = S;
@@ -43,7 +40,7 @@ class Room {
 		Room r = new Room("The Ocean", "The vast, and soundless ocean");
 		//          N S W E
 		r.setExits("", "Kelp forrest", "cave", "Shipwreck");
-		roomList.put("The Ocean", r);
+		roomList.put("ocean", r);
 		
 		r = new Room("The Kelp forrest", "You see giant kelp all around, a fish skeleton, water proof notebook. "
 				+ "The opeaning to the forrest is to the east, west takes you back to the still waters");
@@ -60,6 +57,19 @@ class Room {
 				+ "Still waters (North)"); 
 		r.setExits("still waters", "", "", "");
 		roomList.put("Ship wreck", r);
-	}
+}
+  
+	//A method that will setup the items for each room. 
+	static void setupItems(ArrayList<String> itemList) {
+		//Items for room 1
+		roomList.get("ocean").itemList.add("notebook"); 
+		
+		//Items for room 2
+		itemList.add("cup");
+		
+		//Item for room 3
+		itemList.add("picture");
+		
+
 }
   
