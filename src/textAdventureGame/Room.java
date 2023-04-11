@@ -8,12 +8,12 @@ class Room {
 	private String title;
 	private String description;	
 	private String N,S,E,W;
-	
+
 	Room(String t, String d) {
 		title = t;
 		description = d;
 	}
-	
+
 
 	private void setExits(String N, String S, String W, String E) {
 		this.N = N;
@@ -21,7 +21,7 @@ class Room {
 		this.W = W;
 		this.E = E;		
 	}
-	
+
 	String getExit(char c) {
 		switch (c) {
 		case 'n': return this.N;
@@ -31,45 +31,46 @@ class Room {
 		default: return null;
 		}
 	}
-	
+
 	String getTitle() {return title;}
 	String getDesc() {return description;}
-	
+
 	//ONLY done at the beginning of the game
 	static void setupRooms(HashMap<String,Room> roomList) {
 		Room r = new Room("The Ocean", "The vast, and soundless ocean");
 		//          N S W E
 		r.setExits("", "Kelp forrest", "cave", "Shipwreck");
 		roomList.put("ocean", r);
-		
+
 		r = new Room("The Kelp forrest", "You see giant kelp all around, a fish skeleton, water proof notebook. "
 				+ "The opeaning to the forrest is to the east, west takes you back to the still waters");
-		r.setExits("", "", "still waters", "The Ocean");
+		r.setExits("", "", "still waters", "ocean");
 		roomList.put("Kelp forrest", r);
-		
+
 		r = new Room("The Cave", "dark and gloomy, open your water proof flashlight to look around"
 				+ "Still waters (east), Kelp forrest (east x2)"); 
 		r.setExits("still waters", "Kelp forrest", "", "");
 		roomList.put("The Cave", r);
-		
+
 		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"
 				+ "You see a door on deck leading to the captians room, and one more door leading towards the ships kitchen"
 				+ "Still waters (North)"); 
 		r.setExits("still waters", "", "", "");
 		roomList.put("Ship wreck", r);
-}
-  
+	}
+
 	//A method that will setup the items for each room. 
 	static void setupItems(ArrayList<String> itemList) {
 		//Items for room 1
-		roomList.get("ocean").itemList.add("notebook"); 
-		
+		//roomList.get("ocean").itemList.add("notebook"); 
+
 		//Items for room 2
 		itemList.add("cup");
-		
+
 		//Item for room 3
 		itemList.add("picture");
-		
 
+
+	}
 }
-  
+
