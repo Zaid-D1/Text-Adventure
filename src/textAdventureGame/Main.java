@@ -11,7 +11,7 @@ public class Main {
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static ArrayList<String> inventory = new ArrayList<String>();
 	static ArrayList<String> itemList = new ArrayList<String>(); 
-	static String currentRoom = "backyard";
+	static String currentRoom;
 	static boolean isPlaying = true;
 
 	public static void main(String[] args) {
@@ -120,7 +120,7 @@ public class Main {
 	static void setup() {
 		Room.setupRooms(roomList);
 		Room.setupItems(itemList);
-		currentRoom = "backyard";  //where you start
+		currentRoom = "ocean"; //where you start
 }
 
 //	static void title() {
