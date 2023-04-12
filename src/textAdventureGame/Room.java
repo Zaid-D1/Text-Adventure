@@ -7,7 +7,7 @@ class Room {
 
 	private String title;
 	private String description;	
-	private String N,S,E,W;
+	private String N,E,S,W;
 
 	Room(String t, String d) {
 		title = t;
@@ -15,19 +15,19 @@ class Room {
 	}
 
 
-	private void setExits(String N, String S, String W, String E) {
+	private void setExits(String N, String E, String S, String W) {
 		this.N = N;
+		this.E = E;
 		this.S = S;
-		this.W = W;
-		this.E = E;		
+		this.W = W;		
 	}
 
 	String getExit(char c) {
 		switch (c) {
 		case 'n': return this.N;
+		case 'e': return this.E;
 		case 's': return this.S;
 		case 'w': return this.W;
-		case 'e': return this.E;
 		default: return null;
 		}
 	}
@@ -37,26 +37,28 @@ class Room {
 
 	//ONLY done at the beginning of the game
 	static void setupRooms(HashMap<String,Room> roomList) {
-		Room r = new Room("The Ocean", "The vast, and soundless ocean");
-		//          N S W E
-		r.setExits("", "Kelp forrest", "cave", "Shipwreck");
+		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a forrest to east,"
+				+ "\nA Cave to the West, and A Shipwreck all the way at the bottom of the ocean"
+				+ "\nNorth is out of water, if you go north the seagulls will eat you because you are small");
+		//          N E S W
+		r.setExits("", "Kelp forrest", "Shipwreck", "Cave");
 		roomList.put("ocean", r);
 
-		r = new Room("The Kelp forrest", "You see giant kelp all around, a fish skeleton, water proof notebook. "
+		r = new Room("The Kelp forrest", "You see giant kelp all around, water proof notebook. "
 				+ "The opeaning to the forrest is to the east, west takes you back to the still waters");
 		r.setExits("", "", "still waters", "ocean");
 		roomList.put("Kelp forrest", r);
 
+		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"
+				+ "\nYou see a door on deck leading to the captians room, and one more door leading towards the ships kitchen"
+				+ "\nStill waters (North)"); 
+		r.setExits("still waters", "", "", "");
+		roomList.put("Shipwreck", r);
+		
 		r = new Room("The Cave", "dark and gloomy, open your water proof flashlight to look around"
 				+ "Still waters (east), Kelp forrest (east x2)"); 
 		r.setExits("still waters", "Kelp forrest", "", "");
-		roomList.put("The Cave", r);
-
-		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"
-				+ "You see a door on deck leading to the captians room, and one more door leading towards the ships kitchen"
-				+ "Still waters (North)"); 
-		r.setExits("still waters", "", "", "");
-		roomList.put("Ship wreck", r);
+		roomList.put("Cave", r);
 	}
 
 	//A method that will setup the items for each room. 
