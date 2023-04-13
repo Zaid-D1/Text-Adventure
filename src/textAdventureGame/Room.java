@@ -1,5 +1,4 @@
 package textAdventureGame;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,6 +7,8 @@ class Room {
 	private String title;
 	private String description;	
 	private String N,S,E,W;
+
+	static ArrayList<String> itemList = new ArrayList<String>();
 
 	Room(String t, String d) {
 		title = t;
@@ -60,17 +61,18 @@ class Room {
 	}
 
 	//A method that will setup the items for each room. 
-	static void setupItems(ArrayList<String> itemList) {
-		//Items for room 1
-		//roomList.get("ocean").itemList.add("notebook"); 
-
-		//Items for room 2
-		itemList.add("cup");
-
-		//Item for room 3
-		itemList.add("picture");
-
-
+	static void setupItems(HashMap<String,Room> roomList, ArrayList<String> itemList) {
+		//All of the items associated with the Ocean room.
+		if(Main.currentRoom.equals("ocean")) {
+			roomList.get("ocean").itemList.add("notebook");
+			roomList.get("ocean").itemList.add("rock"); 
+		}
+		
+		if(Main.currentRoom.equals("Kelp forrest")) {
+			roomList.get("Kelp forrest").itemList.add("kelp"); 
+		}
 	}
 }
+
+//notebook --> Ocean 
 

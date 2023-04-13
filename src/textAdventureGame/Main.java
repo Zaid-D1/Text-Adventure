@@ -9,8 +9,8 @@ public class Main {
 
 	// ===GLOBAL VARIABLES===
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
+	static HashMap<String, Item> itemMap = new HashMap<String, Item>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
-	static ArrayList<String> itemList = new ArrayList<String>(); 
 	static String currentRoom;
 	static boolean isPlaying = true;
 
@@ -60,7 +60,8 @@ public class Main {
 			return;
 		}
 
-		currentRoom = newRoom;		
+		currentRoom = newRoom;	
+		System.out.println("Current Room: " + currentRoom);
 		lookAtRoom(false);		
 	}
 
@@ -74,39 +75,29 @@ public class Main {
 
 	//When a player types in "pickup" it calls the addItems method that add elements to the array list.
 	private static void addItems(String item) {
-
-		// Room #1 item
-		if(currentRoom.equals("backyard") && item.equals(itemList.get(0))) {
-			//itemList.remove(itemList.indexOf(item)); 
-			inventory.add(item);
-			System.out.println("You have accquired a " + item + ".");  
-		}
-
+		//Before the item gets added into the inventory, the setUpItems() will map out the specific items to their 
+		//corresponding rooms. 
+		Room.setupItems(roomList, inventory);
 		
-		//Room #2 item
-		if(currentRoom.equals("kitchen") && item.equals(itemList.get(1))) { 
-			//itemList.remove(itemList.indexOf(item)); 
+		//Checks to see if the what item the user typed in exist in the itemList
+		if(Room.itemList.contains(item)) {
+			Room.itemList.remove(Room.itemList.indexOf(item)); 
 			inventory.add(item);
-			System.out.println("You have accquired a " + item + ".");
+			System.out.println("You acquired " + item); 
 		}
-
-		//Room #3
-		if(currentRoom.equals("hall1") && item.equals(itemList.get(2))) {
-			//itemList.remove(itemList.indexOf(item)); 
-			inventory.add(item);
-			System.out.println("You have accquired a " + item + ".");
-		}
+		else System.out.println("You can't pickup " + item);
 	}
 
 	//A method that allows the player to drop any items from their inventory. 
 	private static void dropItem(String item) {
-		inventory.remove(inventory.indexOf(item)); 
-		System.out.println("You have dropped a " + item + ".");
+		inventory.remove(inventory.indexOf(item));
+		Room.itemList.add(item); 
+		System.out.println("You have dropped" + item);
 	}
 
 	//A Method that just prints out the array.
 	private static void showInventory() {
-		System.out.println("Inventory: " + inventory.toString());
+		System.out.println("Inventory: " + inventory);
 	}
 
 	static Scanner sc = new Scanner(System.in);
@@ -118,9 +109,10 @@ public class Main {
 	}
 
 	static void setup() {
-		Room.setupRooms(roomList);
-		Room.setupItems(itemList);
 		currentRoom = "ocean"; //where you start
+		Room.setupRooms(roomList);
+		Item.setUpItems(itemMap);
+		
 }
 
 //	static void title() {
