@@ -9,7 +9,7 @@ public class Main {
 
 	// ===GLOBAL VARIABLES===
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
-	static HashMap<String, Item> itemMap = new HashMap<String, Item>(); 
+	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
 	static String currentRoom;
 	static boolean isPlaying = true;
@@ -47,6 +47,11 @@ public class Main {
 			case "look":
 				lookAtRoom(true);
 				break;
+			case "inspect":
+				inspectItem(words[1]);
+				break;
+			case "help":
+				helpCommand(words[0]); 
 			}
 		}
 	}
@@ -66,7 +71,6 @@ public class Main {
 	}
 
 	private static void lookAtRoom(boolean b) {
-
 		Room rm = roomList.get(currentRoom);
 		System.out.println("\n== " + rm.getTitle() + " ==");
 		System.out.println(rm.getDesc());	
@@ -94,8 +98,25 @@ public class Main {
 		Room.itemList.add(item); 
 		System.out.println("You have dropped" + item);
 	}
+	
+	//A method that will return the name and description of the inspected item. 
+	private static void inspectItem(String item) {
+		if(inventory.contains(item)) {
+			System.out.println("Item Name: " + itemMap.get(item).getItemName());
+			System.out.println("Item Description: " + itemMap.get(item).getItemDesc());
+			System.out.println("Damage: " + itemMap.get(item).getItemDamage());
+		}
+		else System.out.println("Can't inspect " + item);
+	}
+	
+	private static void helpCommand(String n) {
+		System.out.println("Controls: \n 1)'n', 's', 'w', 'e' - can move the player North, South, West, and East \n"
+				+ " 2)'pickup' or 'take' - put items in the inventory \n 3)'drop' - drops the item from your invenotry\n"
+				+ " 4)'i' or 'inventory' - opens the inventory\n 5)'look' - gives the title and a breif description "
+				+ "about the room\n 6)'inspect' - gives the item name and desciption of the item");
+	}
 
-	//A Method that just prints out the array.
+	//A method that just prints out the inventory array list.
 	private static void showInventory() {
 		System.out.println("Inventory: " + inventory);
 	}
@@ -111,7 +132,7 @@ public class Main {
 	static void setup() {
 		currentRoom = "ocean"; //where you start
 		Room.setupRooms(roomList);
-		Item.setUpItems(itemMap);
+		Items.setUpItems(itemMap);
 		
 }
 

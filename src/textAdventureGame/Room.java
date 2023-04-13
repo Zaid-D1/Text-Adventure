@@ -68,11 +68,20 @@ class Room {
 			roomList.get("ocean").itemList.add("rock"); 
 		}
 		
+		//All of the items associated with Kelp Forrest.
 		if(Main.currentRoom.equals("Kelp forrest")) {
-			roomList.get("Kelp forrest").itemList.add("kelp"); 
+			roomList.get("Kelp forrest").itemList.add("healing potion"); 
+		}
+		
+		//All of the items associated with The Cave.
+		if(Main.currentRoom.equals("The Cave")) {
+			
+		}
+		//All of the items associated with Ship Wreck. 
+		if(Main.currentRoom.equals("Ship wreck")) {
+			
 		}
 	}
 }
 
-//notebook --> Ocean 
 
