@@ -9,7 +9,7 @@ public class Main {
 
 	// ===GLOBAL VARIABLES===
 	static Player p = new Player("Player 1", 0, 100, "");
-	static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+	static HashMap<String, Enemy> enemyList = new HashMap<String, Enemy>();
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
