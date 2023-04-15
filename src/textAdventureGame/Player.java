@@ -24,5 +24,24 @@ public class Player {
 	static void levelUp() {
 		
 	}
+	//Method that shows the damge taken by the player and also exits the program if the player is dead
+	public void takeDamage(int damage) {
+		  health -= damage;
+		    System.out.println(name + " took " + damage + " damage!");
+		    if (health <= 0) {
+		        System.out.println("Game Over" + name + " has been defeated!");
+		        System.exit(0);
+		    } else {
+		        System.out.println(name + " has " + health + " health remaining.");
+		        if (health <= 50) {
+		            System.out.println("Your health is getting low! Consider using a potion. Any more damage and you will be in seveare danger");
+		        }
+		    }
+	}
+
+	
+
+	
+
 
 }
