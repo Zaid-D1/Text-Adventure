@@ -71,12 +71,12 @@ public class Main {
 		Enemy kelpForestBoss = new Enemy("Mother Piranha", 50, 10, "Kelp forest");
 		
 		//Enemies for the Cave
-		Enemy miniCaveEnemy = new Enemy("Eel minions", 30, 7, "Cave");
-		Enemy caveBoss = new Enemy("Big Eel", 100, 20, "Cave");
+		Enemy miniCaveEnemy = new Enemy("Eels", 30, 7, "Cave");
+		Enemy caveBoss = new Enemy("Giant Kraken", 100, 20, "Cave");
 		
 		//Enemies for the Shipwreck
-		Enemy minishipEnemy = new Enemy("Crabs", 80, 15, "Shipwreck");
-		Enemy shipWreckBoss = new Enemy("Giant Squid", 200, 30, "Shipwreck");
+		Enemy minishipEnemy = new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
+		Enemy shipWreckBoss = new Enemy("Captain Skelton Pirate", 200, 30, "Shipwreck");
 		
 	}
 
