@@ -1,6 +1,11 @@
 package textAdventureGame;
 
+import java.util.HashMap;
+
 public class Enemy {
+	
+	static HashMap<String, Enemy> enemyList = new HashMap<String, Enemy>();
+
 	private String name;
 	private int health;
 	private int damage;
@@ -12,6 +17,29 @@ public class Enemy {
 		this.damage = damage;
 		this.room = room;
 	}
+	
+	static void setupEnemies() {
+        Enemy e = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
+        enemyList.put("Baby Piranha", e);
+
+        e = new Enemy("Eels", 30, 7, "Cave");
+        enemyList.put("Eels", e);
+
+        e = new Enemy("Giant Kraken", 100, 20, "Cave");
+        enemyList.put("Gaint Karaken", e);
+
+        e = new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
+        enemyList.put("skeleton pirates", e);
+
+        e = new Enemy("Mother Piranha", 50, 10, "Boss Room - Kelp forrest");
+        enemyList.put("Mother Piranha", e);
+
+        e = new Enemy("Giant Kraken", 100, 20, "Boss Room - The Cave");
+        enemyList.put("Giant Kraken", e);
+
+        e = new Enemy("Skeleton Pirate Captain", 200, 30, "Boss Room - Shipwreck");
+        enemyList.put("skeleton pirate captain", e);
+    }
 
 	public void attackPlayer(Player player) {
 		player.takeDamage(damage);

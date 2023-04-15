@@ -9,7 +9,7 @@ public class Main {
 
 	// ===GLOBAL VARIABLES===
 	static Player p = new Player("Player 1", 0, 100, "");
-	static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
+	static HashMap<String, Enemy> enemyList = new HashMap<String, Enemy>();
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
@@ -71,12 +71,12 @@ public class Main {
 		Enemy kelpForestBoss = new Enemy("Mother Piranha", 50, 10, "Kelp forest");
 		
 		//Enemies for the Cave
-		Enemy miniCaveEnemy = new Enemy("Eel minions", 30, 7, "Cave");
-		Enemy caveBoss = new Enemy("Big Eel", 100, 20, "Cave");
+		Enemy miniCaveEnemy = new Enemy("Eels", 30, 7, "Cave");
+		Enemy caveBoss = new Enemy("Giant Kraken", 100, 20, "Cave");
 		
 		//Enemies for the Shipwreck
-		Enemy minishipEnemy = new Enemy("Crabs", 80, 15, "Shipwreck");
-		Enemy shipWreckBoss = new Enemy("Giant Squid", 200, 30, "Shipwreck");
+		Enemy minishipEnemy = new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
+		Enemy shipWreckBoss = new Enemy("Captain Skelton Pirate", 200, 30, "Shipwreck");
 		
 	}
 
