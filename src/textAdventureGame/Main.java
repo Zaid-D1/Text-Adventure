@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Main {
 
 	// ===GLOBAL VARIABLES===
+	static Player p = new Player("Player 1", 0, 100, "");
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
@@ -52,6 +53,16 @@ public class Main {
 				break;
 			case "help":
 				helpCommand(words[0]); 
+				break;
+			case "status":
+				showPlayerSatus(); 
+				break; 
+			case "equip":
+				equipItem(words[1]); 
+				break; 
+			case "attack":
+				attackEnemy();
+				break; 
 			}
 		}
 	}
@@ -109,11 +120,35 @@ public class Main {
 		else System.out.println("Can't inspect " + item);
 	}
 	
+	//A method that will show the controls to a player if needed. 
 	private static void helpCommand(String n) {
 		System.out.println("Controls: \n 1)'n', 's', 'w', 'e' - can move the player North, South, West, and East \n"
 				+ " 2)'pickup' or 'take' - put items in the inventory \n 3)'drop' - drops the item from your invenotry\n"
 				+ " 4)'i' or 'inventory' - opens the inventory\n 5)'look' - gives the title and a breif description "
 				+ "about the room\n 6)'inspect' - gives the item name and desciption of the item");
+	}
+	
+	//A method that shows the player status.
+	private static void showPlayerSatus() {
+		System.out.println("Name: " + p.getName());
+		System.out.println("Level: " + p.getLevel());
+		System.out.println("Helath: " + p.getHealth());
+		System.out.println("Equiped Item: " + p.equipedItem);
+	}
+	
+	private static void equipItem(String item) {
+		if(inventory.contains(item)) {
+			inventory.remove(inventory.indexOf(item)); 
+			p.equipedItem = item; 
+			System.out.println("You have equiped " + item);
+		}
+	}
+	
+	private static void attackEnemy() {
+		if(itemMap.get(p.equipedItem).getItemDamage() > 0) {
+			System.out.println("You have attacked");
+		}
+		else System.out.println("You can't attack with " + p.equipedItem);
 	}
 
 	//A method that just prints out the inventory array list.
@@ -133,7 +168,6 @@ public class Main {
 		currentRoom = "ocean"; //where you start
 		Room.setupRooms(roomList);
 		Items.setUpItems(itemMap);
-		
 }
 
 //	static void title() {
