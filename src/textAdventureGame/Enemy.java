@@ -4,11 +4,13 @@ public class Enemy {
 	private String name;
 	private int health;
 	private int damage;
+	private String room;
 
-	public Enemy(String name, int health, int damage) {
+	public Enemy(String name, int health, int damage, String room) {
 		this.name = name;
 		this.health = health;
 		this.damage = damage;
+		this.room = room;
 	}
 
 	public void attackPlayer(Player player) {
@@ -30,4 +32,8 @@ public class Enemy {
 	public int getHealth() {
 		return health;
 	}
+	
+	public String getRoom() {
+        return room;
+    }
 }

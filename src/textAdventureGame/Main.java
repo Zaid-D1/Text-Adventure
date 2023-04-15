@@ -9,6 +9,7 @@ public class Main {
 
 	// ===GLOBAL VARIABLES===
 	static Player p = new Player("Player 1", 0, 100, "");
+	static ArrayList<Enemy> enemiesList = new ArrayList<Enemy>();
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
@@ -23,7 +24,7 @@ public class Main {
 
 		//title(); 
 		setup();
-		
+
 		lookAtRoom(true);		
 
 		while(isPlaying) {
@@ -65,6 +66,18 @@ public class Main {
 				break; 
 			}
 		}
+		//Enemies for the Kelp forest
+		Enemy miniKelpEnemy = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
+		Enemy kelpForestBoss = new Enemy("Mother Piranha", 50, 10, "Kelp forest");
+		
+		//Enemies for the Cave
+		Enemy miniCaveEnemy = new Enemy("Eel minions", 30, 7, "Cave");
+		Enemy caveBoss = new Enemy("Big Eel", 100, 20, "Cave");
+		
+		//Enemies for the Shipwreck
+		Enemy minishipEnemy = new Enemy("Crabs", 80, 15, "Shipwreck");
+		Enemy shipWreckBoss = new Enemy("Giant Squid", 200, 30, "Shipwreck");
+		
 	}
 
 	//This will crash if you move to a room that does not exist in the hashmap.
@@ -93,7 +106,7 @@ public class Main {
 		//Before the item gets added into the inventory, the setUpItems() will map out the specific items to their 
 		//corresponding rooms. 
 		Room.setupItems(roomList, inventory);
-		
+
 		//Checks to see if the what item the user typed in exist in the itemList
 		if(Room.itemList.contains(item)) {
 			Room.itemList.remove(Room.itemList.indexOf(item)); 
@@ -109,7 +122,7 @@ public class Main {
 		Room.itemList.add(item); 
 		System.out.println("You have dropped" + item);
 	}
-	
+
 	//A method that will return the name and description of the inspected item. 
 	private static void inspectItem(String item) {
 		if(inventory.contains(item)) {
@@ -119,7 +132,7 @@ public class Main {
 		}
 		else System.out.println("Can't inspect " + item);
 	}
-	
+
 	//A method that will show the controls to a player if needed. 
 	private static void helpCommand(String n) {
 		System.out.println("Controls: \n 1)'n', 's', 'w', 'e' - can move the player North, South, West, and East \n"
@@ -127,7 +140,7 @@ public class Main {
 				+ " 4)'i' or 'inventory' - opens the inventory\n 5)'look' - gives the title and a breif description "
 				+ "about the room\n 6)'inspect' - gives the item name and desciption of the item");
 	}
-	
+
 	//A method that shows the player status.
 	private static void showPlayerSatus() {
 		System.out.println("Name: " + p.getName());
@@ -135,7 +148,7 @@ public class Main {
 		System.out.println("Helath: " + p.getHealth());
 		System.out.println("Equiped Item: " + p.equipedItem);
 	}
-	
+
 	private static void equipItem(String item) {
 		if(inventory.contains(item)) {
 			inventory.remove(inventory.indexOf(item)); 
@@ -143,7 +156,7 @@ public class Main {
 			System.out.println("You have equiped " + item);
 		}
 	}
-	
+
 	private static void attackEnemy() {
 		if(itemMap.get(p.equipedItem).getItemDamage() > 0) {
 			System.out.println("You have attacked");
@@ -168,25 +181,25 @@ public class Main {
 		currentRoom = "ocean"; //where you start
 		Room.setupRooms(roomList);
 		Items.setUpItems(itemMap);
-}
+	}
 
-//	static void title() {
-//		//Used a website that can convert any sentence or words into ASCII Art (pretty cool), here is the 
-//		//URL: https://patorjk.com/software/taag/#p=display&h=1&v=0&f=Big&t=Under%20the%20Sea
-//		String title = "  _    _             _               _    _              _____              \r\n"
-//				+ " | |  | |           | |             | |  | |            / ____|             \r\n"
-//				+ " | |  | | _ __    __| |  ___  _ __  | |_ | |__    ___  | (___    ___   __ _ \r\n"
-//				+ " | |  | || '_ \\  / _` | / _ \\| '__| | __|| '_ \\  / _ \\  \\___ \\  / _ \\ / _` |\r\n"
-//				+ " | |__| || | | || (_| ||  __/| |    | |_ | | | ||  __/  ____) ||  __/| (_| |\r\n"
-//				+ "  \\____/ |_| |_| \\__,_| \\___||_|     \\__||_| |_| \\___| |_____/  \\___| \\__,_|\r\n"
-//				+ "                                                                            \r\n"
-//				+ "                                                                            ";
-//
-//		for(int i = 0; i < title.length(); i++) {
-//			System.out.print(title.charAt(i));
-// 
-//		}
-//		System.out.println();
-//	}
+	//	static void title() {
+	//		//Used a website that can convert any sentence or words into ASCII Art (pretty cool), here is the 
+	//		//URL: https://patorjk.com/software/taag/#p=display&h=1&v=0&f=Big&t=Under%20the%20Sea
+	//		String title = "  _    _             _               _    _              _____              \r\n"
+	//				+ " | |  | |           | |             | |  | |            / ____|             \r\n"
+	//				+ " | |  | | _ __    __| |  ___  _ __  | |_ | |__    ___  | (___    ___   __ _ \r\n"
+	//				+ " | |  | || '_ \\  / _` | / _ \\| '__| | __|| '_ \\  / _ \\  \\___ \\  / _ \\ / _` |\r\n"
+	//				+ " | |__| || | | || (_| ||  __/| |    | |_ | | | ||  __/  ____) ||  __/| (_| |\r\n"
+	//				+ "  \\____/ |_| |_| \\__,_| \\___||_|     \\__||_| |_| \\___| |_____/  \\___| \\__,_|\r\n"
+	//				+ "                                                                            \r\n"
+	//				+ "                                                                            ";
+	//
+	//		for(int i = 0; i < title.length(); i++) {
+	//			System.out.print(title.charAt(i));
+	// 
+	//		}
+	//		System.out.println();
+	//	}
 
 }
