@@ -65,8 +65,10 @@ public class Main {
 				attackEnemy(words[1]);
 				break; 
 			}
-			if(currentRoom.equals("Shipwreck - Boss Room")) { //Whatever room the final boss is in.
-				wonGame(); 
+			
+			if(currentRoom.equals("Shipwreck - Boss Room") && enemiesMap.get("skeleton pirate captain").getHealth() == 0) { //Whatever room the final boss is in.
+				System.out.println("You have overtaken all three bosses and have protected the Ocean Kingdom. Thank you for playing.");
+				break; 
 			}
 		}
 	}
@@ -147,8 +149,9 @@ public class Main {
 			System.out.println("You have equiped " + item);
 		}
 	}
-
-	private static void attackEnemy(String enemy) { // FIXME
+	
+	//TODO
+	private static void attackEnemy(String enemy) { 
 	
 	}
 
@@ -170,13 +173,6 @@ public class Main {
 		Room.setupRooms(roomList);
 		Items.setupItems(itemMap);
 		Enemy.setupEnemies(enemiesMap);
-	}
-	
-	static void wonGame() {
-		if(enemiesMap.get("Giant Squid").getHealth() == 0) {
-			isPlaying = false; 
-			System.out.println("You have overtaken the Ocean Kingdom and deafeted all three oulaws.\n Thank you for playing");
-		}
 	}
 
 	//	static void title() {

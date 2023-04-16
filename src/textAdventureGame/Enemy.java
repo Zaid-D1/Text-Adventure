@@ -9,7 +9,7 @@ public class Enemy {
 	private int damage;
 	private String room;
 
-	public Enemy(String name, int health, int damage, String room) {
+	Enemy(String name, int health, int damage, String room) {
 		this.name = name;
 		this.health = health;
 		this.damage = damage;
@@ -47,7 +47,7 @@ public class Enemy {
 	public boolean isAlive() {
 		return health > 0;
 	}
-
+	
 	public void takeDamage(int damage) {
 		health -= damage;
 		if (!isAlive()) {

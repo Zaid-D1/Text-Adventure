@@ -1,5 +1,7 @@
 package textAdventureGame;
 
+import java.util.HashMap;
+
 public class Player {
 
 	//Characteristics of a player
@@ -21,27 +23,44 @@ public class Player {
 	int getHealth() {return health;}
 
 	//A method that allows the player to level up once they have defeated a boss in a specific room. 
-	static void levelUp() {
-		
+	static void levelUp(HashMap<String, Enemy> enemiesMap, String enemy) {
+		if(enemiesMap.get(enemy).getHealth() <= 0) {
+			//Updates the player level
+			int playerOrginalLevel = Main.p.getLevel(); 
+			int playerNewLevel = playerOrginalLevel++; 
+			playerOrginalLevel = playerNewLevel; 
+			System.out.println("You have leveled up to level " + playerNewLevel);
+
+			//Lets the rock evolve into a new weapon depending on what room the player is in. 
+			if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {
+				Main.inventory.remove(Main.inventory.indexOf("rock")); 
+				Main.inventory.add("spear"); 
+			}
+			
+			if(Main.currentRoom.equals("Ocean - Boss Room")) {
+				Main.inventory.remove(Main.inventory.indexOf("spear")); 
+				Main.inventory.add("sling"); 
+			}
+		}
 	}
 	//Method that shows the damage taken by the player and also exits the program if the player is dead
 	public void takeDamage(int damage) {
-		  health -= damage;
-		    System.out.println(name + " took " + damage + " damage!");
-		    if (health <= 0) {
-		        System.out.println("Game Over" + name + " has been defeated!");
-		        System.exit(0);
-		    } else {
-		        System.out.println(name + " has " + health + " health remaining.");
-		        if (health <= 50) {
-		            System.out.println("Your health is getting low! Consider using a potion. Any more damage and you will be in seveare danger");
-		        }
-		    }
+		health -= damage;
+		System.out.println(name + " took " + damage + " damage!");
+		if (health <= 0) {
+			System.out.println("Game Over" + name + " has been defeated!");
+			System.exit(0);
+		} else {
+			System.out.println(name + " has " + health + " health remaining.");
+			if (health <= 50) {
+				System.out.println("Your health is getting low! Consider using a potion. Any more damage and you will be in seveare danger");
+			}
+		}
 	}
 
-	
 
-	
+
+
 
 
 }
