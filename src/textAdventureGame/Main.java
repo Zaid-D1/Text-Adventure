@@ -9,7 +9,7 @@ public class Main {
 
 	// ===GLOBAL VARIABLES===
 	static Player p = new Player("Player 1", 0, 100, "");
-	static HashMap<String, Enemy> enemyList = new HashMap<String, Enemy>();
+	static HashMap <String, Enemy> enemiesMap = new HashMap <String, Enemy>();
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
@@ -63,11 +63,19 @@ public class Main {
 				equipItem(words[1]); 
 				break; 
 			case "attack":
-				attackEnemy();
+				attackEnemy(words[1]);
+				break; 
+			}
+			
+			if(currentRoom.equals("Shipwreck - Boss Room") && enemiesMap.get("skeleton pirate captain").getHealth() == 0) { //Whatever room the final boss is in.
+				System.out.println("You have overtaken all three bosses and have protected the Ocean Kingdom. Thank you for playing.");
 				break; 
 			}
 		}
+<<<<<<< HEAD
 
+=======
+>>>>>>> Prayag
 	}
 
 	//This will crash if you move to a room that does not exist in the hashmap.
@@ -146,6 +154,7 @@ public class Main {
 			System.out.println("You have equiped " + item);
 		}
 	}
+<<<<<<< HEAD
 
 	private static void attackEnemy() {
 	    Room currentRoom = roomList.get(Main.currentRoom);
@@ -174,6 +183,12 @@ public class Main {
 	        System.out.println("You have been defeated by the " + enemy.getName() + "!");
 	        isPlaying = false;
 	    }
+=======
+	
+	//TODO
+	private static void attackEnemy(String enemy) { 
+	
+>>>>>>> Prayag
 	}
 
 
@@ -193,7 +208,8 @@ public class Main {
 	static void setup() {
 		currentRoom = "ocean"; //where you start
 		Room.setupRooms(roomList);
-		Items.setUpItems(itemMap);
+		Items.setupItems(itemMap);
+		Enemy.setupEnemies(enemiesMap);
 	}
 
 	//	static void title() {

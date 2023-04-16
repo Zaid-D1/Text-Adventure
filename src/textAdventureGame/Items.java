@@ -20,7 +20,7 @@ public class Items {
 	int getItemDamage() {return damagePoints;}
 
 	//Setting up all of the items in the game and putting them in a hash map. 
-	static void setUpItems (HashMap <String, Items> itemMap) {
+	static void setupItems (HashMap <String, Items> itemMap) {
 
 		//Non-Damage Items
 		Items it = new Items("Notebook", "The Ocean Kingdom has been invaded by three outlaws of the kingdom:\n"

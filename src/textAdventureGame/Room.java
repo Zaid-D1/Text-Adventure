@@ -87,7 +87,8 @@ class Room {
 		
 		//All of the items associated with Kelp Forrest.
 		if(Main.currentRoom.equals("Kelp forrest")) {
-			roomList.get("Kelp forrest").itemList.add("healing potion"); 
+			roomList.get("Kelp forrest").itemList.add("healing potion");
+	
 		}
 		
 		//All of the items associated with The Cave.
