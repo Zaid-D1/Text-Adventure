@@ -23,10 +23,6 @@ public class Player {
 	int getHealth() {return health;}
 
 	//A method that allows the player to level up once they have defeated a boss in a specific room. 
-<<<<<<< HEAD
-	static void levelUp() {
-
-=======
 	static void levelUp(HashMap<String, Enemy> enemiesMap, String enemy) {
 		if(enemiesMap.get(enemy).getHealth() <= 0) {
 			//Updates the player level
@@ -46,8 +42,9 @@ public class Player {
 				Main.inventory.add("sling"); 
 			}
 		}
->>>>>>> Prayag
+
 	}
+
 	//Method that shows the damage taken by the player and also exits the program if the player is dead
 	public void takeDamage(int damage) {
 		health -= damage;
@@ -61,37 +58,25 @@ public class Player {
 				System.out.println("Your health is getting low! Consider using a potion. Any more damage and you will be in seveare danger");
 			}
 		}
-<<<<<<< HEAD
 	}
-
-
 
 	public int getDamage() {
 		// Get the damage points of the equipped item
-		int damage = 0;
-		if (equipedItem != null) {
-			for (Items item : itemMap.values()) {
-				if (item.getItemName().equalsIgnoreCase(equipedItem)) {
-					damage = item.getItemDamage();
-					break;
+				int damage = 0;
+				if (equipedItem != null) {
+					for (Items item : itemMap.values()) {
+						if (item.getItemName().equalsIgnoreCase(equipedItem)) {
+							damage = item.getItemDamage();
+							break;
+						}
+					}
 				}
-			}
-		}
-		return damage;
+				return damage;
 	}
-
-
+	
 	public void setHealth(int remainingPlayerHealth) {
 		health = remainingPlayerHealth;
 	}
-
-
-=======
-	}
-
-
->>>>>>> Prayag
-
 
 
 

@@ -3,11 +3,10 @@ package textAdventureGame;
 import java.util.HashMap;
 
 public class Enemy {
-<<<<<<< HEAD
+
 
 	static HashMap<String, Enemy> enemyList = new HashMap<String, Enemy>();
-=======
->>>>>>> Prayag
+
 
 	private String name;
 	private int health;
@@ -20,7 +19,7 @@ public class Enemy {
 		this.damage = damage;
 		this.room = room;
 	}
-<<<<<<< HEAD
+
 
 	static void setupEnemies() {
 		Enemy e = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
@@ -43,7 +42,7 @@ public class Enemy {
 
 		e = new Enemy("Skeleton Pirate Captain", 200, 30, "Boss Room - Shipwreck");
 		enemyList.put("skeleton pirate captain", e);
-=======
+	}
 
 	static void setupEnemies (HashMap<String, Enemy> enemiesMap) {
 		Enemy e = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
@@ -66,7 +65,7 @@ public class Enemy {
 
 		e = new Enemy("Skeleton Pirate Captain", 200, 30, "Boss Room - Shipwreck");
 		enemiesMap.put("skeleton pirate captain", e);
->>>>>>> Prayag
+
 	}
 
 	public void attackPlayer(Player player) {
@@ -106,14 +105,6 @@ public class Enemy {
 			return health;
 		}
 
-		
-	}
-<<<<<<< HEAD
 	
-=======
-
-	public String getRoom() {
-		return room;
-	}
 }
->>>>>>> Prayag
+

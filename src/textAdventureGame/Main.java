@@ -72,10 +72,7 @@ public class Main {
 				break; 
 			}
 		}
-<<<<<<< HEAD
 
-=======
->>>>>>> Prayag
 	}
 
 	//This will crash if you move to a room that does not exist in the hashmap.
@@ -154,7 +151,7 @@ public class Main {
 			System.out.println("You have equiped " + item);
 		}
 	}
-<<<<<<< HEAD
+
 
 	private static void attackEnemy() {
 	    Room currentRoom = roomList.get(Main.currentRoom);
@@ -183,12 +180,12 @@ public class Main {
 	        System.out.println("You have been defeated by the " + enemy.getName() + "!");
 	        isPlaying = false;
 	    }
-=======
+	}
+
 	
 	//TODO
 	private static void attackEnemy(String enemy) { 
 	
->>>>>>> Prayag
 	}
 
 
