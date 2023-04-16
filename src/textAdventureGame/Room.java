@@ -45,20 +45,21 @@ class Room {
 		r.setExits("", "Kelp forest", "Shipwreck", "Cave");
 		roomList.put("ocean", r);
 
-		r = new Room("The Kelp forrest", "You see giant kelp all around, water proof notebook. "
-				+ "The opeaning to the forrest is to the east, west takes you back to the still waters"
+		r = new Room("The Kelp forrest", "You see giant kelp all around, a water proof notebook. "
+				+ "There are a few baby piranhas that you need to fight, west takes you back to the still waters"
 				+ "\nA path leads south to a mysterious portal");
 		r.setExits("", "", "still waters", "ocean");
 		roomList.put("Kelp forest", r);
 
 		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"
-				+ "\nYou see a door on deck towards the ships kitchen"
+				+ "\nThere are a few skelton pirates on board, You see a door on deck towards the ships kitchen"
 				+ "\nStill waters (North), a path leads west to a mysterious portal"); 
 		r.setExits("still waters", "", "", "Cave");
 		roomList.put("Shipwreck", r);
 		
 		r = new Room("The Cave", "dark and gloomy, open your water proof flashlight to look around"
-				+ "Still waters (east), Kelp forest (east x2), a path leads north to a mysterious portal"); 
+				+ "Becareful, there are a few eels here and there, Still waters (east), Kelp forest (east x2),"
+				+ "\nA path leads north to a mysterious portal"); 
 		r.setExits("Shipwreck", "Kelp forrest", "", "");
 		roomList.put("Cave", r);
 		
@@ -98,6 +99,30 @@ class Room {
 			
 		}
 	}
+
+
+	 Enemy getEnemy() {
+		if(Main.currentRoom.equals("Kelp forrest - Boss Room")) {
+			return new Enemy("Mother Piranha", 50, 10, "Kelp forest");
+		}
+		else if(Main.currentRoom.equals("Cave - Boss Room")) {
+			return new Enemy("Giant Kraken", 100, 20, "Cave");
+		}
+		else if(Main.currentRoom.equals("Shipwreck - Boss Room")) {
+			return new Enemy("Deadly Pirate Captain", 75, 15, "Shipwreck");
+		}
+		else {
+			return null;
+		}
+	}
+
+
+	public void setEnemy(Object object) {
+		if(Main.currentRoom.equals("Kelp forrest - Boss Room") || Main.currentRoom.equals("Cave - Boss Room") || Main.currentRoom.equals("Shipwreck - Boss Room")) {
+			Main.currentEnemy = (Enemy) object;
+		}
+	}
+
 }
 
 

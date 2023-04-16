@@ -14,6 +14,7 @@ public class Main {
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
 	static String currentRoom;
+	static Enemy currentEnemy;
 	static boolean isPlaying = true;
 
 	public static void main(String[] args) {
@@ -66,18 +67,7 @@ public class Main {
 				break; 
 			}
 		}
-		//Enemies for the Kelp forest
-		Enemy miniKelpEnemy = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
-		Enemy kelpForestBoss = new Enemy("Mother Piranha", 50, 10, "Kelp forest");
-		
-		//Enemies for the Cave
-		Enemy miniCaveEnemy = new Enemy("Eels", 30, 7, "Cave");
-		Enemy caveBoss = new Enemy("Giant Kraken", 100, 20, "Cave");
-		
-		//Enemies for the Shipwreck
-		Enemy minishipEnemy = new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
-		Enemy shipWreckBoss = new Enemy("Captain Skelton Pirate", 200, 30, "Shipwreck");
-		
+
 	}
 
 	//This will crash if you move to a room that does not exist in the hashmap.
@@ -158,11 +148,34 @@ public class Main {
 	}
 
 	private static void attackEnemy() {
-		if(itemMap.get(p.equipedItem).getItemDamage() > 0) {
-			System.out.println("You have attacked");
-		}
-		else System.out.println("You can't attack with " + p.equipedItem);
+	    Room currentRoom = roomList.get(Main.currentRoom);
+	    if(currentRoom.getEnemy() == null) {
+	        System.out.println("There is no enemy to attack.");
+	        return;
+	    }
+	    Enemy enemy = currentRoom.getEnemy();
+	    int damage = p.getDamage();
+	    int health = enemy.getHealth();
+	    int remainingHealth = health - damage;
+	    enemy.health(remainingHealth);
+	    System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+	    if(remainingHealth <= 0) {
+	        System.out.println("You defeated the " + enemy.getName() + "!");
+	        currentRoom.setEnemy(null);
+	        return;
+	    }
+	    System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
+	    int enemyDamage = enemy.getDamage();
+	    int playerHealth = p.getHealth();
+	    int remainingPlayerHealth = playerHealth - enemyDamage;
+	    p.setHealth(remainingPlayerHealth);
+	    System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
+	    if(remainingPlayerHealth <= 0) {
+	        System.out.println("You have been defeated by the " + enemy.getName() + "!");
+	        isPlaying = false;
+	    }
 	}
+
 
 	//A method that just prints out the inventory array list.
 	private static void showInventory() {
