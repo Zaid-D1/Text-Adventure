@@ -9,7 +9,7 @@ public class Main {
 
 	// ===GLOBAL VARIABLES===
 	static Player p = new Player("Player 1", 0, 100, "");
-	static HashMap<String, Enemy> enemyList = new HashMap<String, Enemy>();
+	static HashMap <String, Enemy> enemiesMap = new HashMap <String, Enemy>();
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
@@ -62,22 +62,13 @@ public class Main {
 				equipItem(words[1]); 
 				break; 
 			case "attack":
-				attackEnemy();
+				attackEnemy(words[1]);
 				break; 
 			}
+			if(currentRoom.equals("Shipwreck - Boss Room")) { //Whatever room the final boss is in.
+				wonGame(); 
+			}
 		}
-		//Enemies for the Kelp forest
-		Enemy miniKelpEnemy = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
-		Enemy kelpForestBoss = new Enemy("Mother Piranha", 50, 10, "Kelp forest");
-		
-		//Enemies for the Cave
-		Enemy miniCaveEnemy = new Enemy("Eels", 30, 7, "Cave");
-		Enemy caveBoss = new Enemy("Giant Kraken", 100, 20, "Cave");
-		
-		//Enemies for the Shipwreck
-		Enemy minishipEnemy = new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
-		Enemy shipWreckBoss = new Enemy("Captain Skelton Pirate", 200, 30, "Shipwreck");
-		
 	}
 
 	//This will crash if you move to a room that does not exist in the hashmap.
@@ -157,11 +148,8 @@ public class Main {
 		}
 	}
 
-	private static void attackEnemy() {
-		if(itemMap.get(p.equipedItem).getItemDamage() > 0) {
-			System.out.println("You have attacked");
-		}
-		else System.out.println("You can't attack with " + p.equipedItem);
+	private static void attackEnemy(String enemy) { // FIXME
+	
 	}
 
 	//A method that just prints out the inventory array list.
@@ -180,7 +168,15 @@ public class Main {
 	static void setup() {
 		currentRoom = "ocean"; //where you start
 		Room.setupRooms(roomList);
-		Items.setUpItems(itemMap);
+		Items.setupItems(itemMap);
+		Enemy.setupEnemies(enemiesMap);
+	}
+	
+	static void wonGame() {
+		if(enemiesMap.get("Giant Squid").getHealth() == 0) {
+			isPlaying = false; 
+			System.out.println("You have overtaken the Ocean Kingdom and deafeted all three oulaws.\n Thank you for playing");
+		}
 	}
 
 	//	static void title() {

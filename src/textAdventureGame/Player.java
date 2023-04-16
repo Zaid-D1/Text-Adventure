@@ -24,7 +24,7 @@ public class Player {
 	static void levelUp() {
 		
 	}
-	//Method that shows the damge taken by the player and also exits the program if the player is dead
+	//Method that shows the damage taken by the player and also exits the program if the player is dead
 	public void takeDamage(int damage) {
 		  health -= damage;
 		    System.out.println(name + " took " + damage + " damage!");

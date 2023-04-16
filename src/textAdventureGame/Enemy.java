@@ -3,8 +3,6 @@ package textAdventureGame;
 import java.util.HashMap;
 
 public class Enemy {
-	
-	static HashMap<String, Enemy> enemyList = new HashMap<String, Enemy>();
 
 	private String name;
 	private int health;
@@ -17,29 +15,29 @@ public class Enemy {
 		this.damage = damage;
 		this.room = room;
 	}
-	
-	static void setupEnemies() {
-        Enemy e = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
-        enemyList.put("Baby Piranha", e);
 
-        e = new Enemy("Eels", 30, 7, "Cave");
-        enemyList.put("Eels", e);
+	static void setupEnemies (HashMap<String, Enemy> enemiesMap) {
+		Enemy e = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
+		enemiesMap.put("Baby Piranha", e);
 
-        e = new Enemy("Giant Kraken", 100, 20, "Cave");
-        enemyList.put("Gaint Karaken", e);
+		e = new Enemy("Eels", 30, 7, "Cave");
+		enemiesMap.put("Eels", e);
 
-        e = new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
-        enemyList.put("skeleton pirates", e);
+		e = new Enemy("Giant Kraken", 100, 20, "Cave");
+		enemiesMap.put("Gaint Karaken", e);
 
-        e = new Enemy("Mother Piranha", 50, 10, "Boss Room - Kelp forrest");
-        enemyList.put("Mother Piranha", e);
+		e = new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
+		enemiesMap.put("skeleton pirates", e);
 
-        e = new Enemy("Giant Kraken", 100, 20, "Boss Room - The Cave");
-        enemyList.put("Giant Kraken", e);
+		e = new Enemy("Mother Piranha", 50, 10, "Boss Room - Kelp forrest");
+		enemiesMap.put("Mother Piranha", e);
 
-        e = new Enemy("Skeleton Pirate Captain", 200, 30, "Boss Room - Shipwreck");
-        enemyList.put("skeleton pirate captain", e);
-    }
+		e = new Enemy("Giant Kraken", 100, 20, "Boss Room - The Cave");
+		enemiesMap.put("Giant Kraken", e);
+
+		e = new Enemy("Skeleton Pirate Captain", 200, 30, "Boss Room - Shipwreck");
+		enemiesMap.put("skeleton pirate captain", e);
+	}
 
 	public void attackPlayer(Player player) {
 		player.takeDamage(damage);
@@ -60,8 +58,8 @@ public class Enemy {
 	public int getHealth() {
 		return health;
 	}
-	
+
 	public String getRoom() {
-        return room;
-    }
+		return room;
+	}
 }
