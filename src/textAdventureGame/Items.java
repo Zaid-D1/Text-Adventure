@@ -7,6 +7,7 @@ public class Items {
 	private String name; 
 	private	String description;  
 	private int damagePoints = 0; 
+	private int attackResistance; 
 
 
 	Items (String n, String d, int damage){
@@ -23,13 +24,22 @@ public class Items {
 	static void setupItems (HashMap <String, Items> itemMap) {
 
 		//Non-Damage Items
-		Items it = new Items("Notebook", "The Ocean Kingdom has been invaded by three outlaws of the kingdom:\n"
-				+ "the Kelp Queen, who now controls the Kelp Forrest, the Golem, who now controls the Caverns,\n and"
-				+ "the Krab, who now controls the Shipwreck.", 0); 
+		Items it = new Items("Notebook", "The Ocean Kingdom has been invaded by three outlaws of the kingdom: "
+				+ "Mother Piranha, Giant Kraken, who now controls the Caverns, and "
+				+ "Skeleton Pirate Captain.", 0); 
 		itemMap.put("notebook", it); 
 //dawd
 		it = new Items ("Healing Potion", "The potion is made out of phytoplankton", 0);
 		itemMap.put("healing potion", it);
+		
+		it = new Items("Shrimp", "", 0);
+		itemMap.put("shrimp", it);
+		
+		it = new Items ("Helmet", "", 0);
+		itemMap.put("helmet", it); 
+		
+		it = new Items ("Chest Plate", "", 0);
+		itemMap.put("chest plate", it);
 
 		//Damage Items
 		it = new Items("Rock", "A rock that has some magic aura.", 10); 
