@@ -28,7 +28,7 @@ public class Items {
 				+ "Mother Piranha, Giant Kraken, who now controls the Caverns, and "
 				+ "Skeleton Pirate Captain.", 0); 
 		itemMap.put("notebook", it); 
-
+//dawd
 		it = new Items ("Healing Potion", "The potion is made out of phytoplankton", 0);
 		itemMap.put("healing potion", it);
 		
