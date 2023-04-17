@@ -38,28 +38,29 @@ class Room {
 
 	//ONLY done at the beginning of the game
 	static void setupRooms(HashMap<String,Room> roomList) {
-		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a forrest to east,"
-				+ "\nA Cave to the West, and A Shipwreck all the way at the bottom of the ocean"
-				+ "\nNorth is out of water, if you go north the seagulls will eat you because you are small");
+		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a forrest to the east,"
+				+ "A Cave to the West, and A Shipwreck all the way at the bottom of the ocean"
+				+ "North is out of water, if you go north the seagulls will eat you because you are small, "
+				+ "you see a rock stuck on a coral");
 		//          N E S W
 		r.setExits("", "Kelp forest", "Shipwreck", "Cave");
 		roomList.put("ocean", r);
 
 		r = new Room("The Kelp forrest", "You see giant kelp all around, a water proof notebook. "
 				+ "There are a few baby piranhas that you need to fight, west takes you back to the still waters"
-				+ "\nA path leads south to a mysterious portal");
+				+ "A path leads south to a mysterious portal");
 		r.setExits("", "", "still waters", "ocean");
 		roomList.put("Kelp forest", r);
 
 		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"
-				+ "\nThere are a few skelton pirates on board, You see a door on deck towards the ships kitchen"
-				+ "\nStill waters (North), a path leads west to a mysterious portal"); 
+				+ "There are a few skelton pirates on board, You see a door on deck towards the ships kitchen"
+				+ "Still waters (North), a path leads west to a mysterious portal"); 
 		r.setExits("still waters", "", "", "Cave");
 		roomList.put("Shipwreck", r);
 		
 		r = new Room("The Cave", "dark and gloomy, open your water proof flashlight to look around"
 				+ "Becareful, there are a few eels here and there, Still waters (east), Kelp forest (east x2),"
-				+ "\nA path leads north to a mysterious portal"); 
+				+ "A path leads north to a mysterious portal"); 
 		r.setExits("Shipwreck", "Kelp forrest", "", "");
 		roomList.put("Cave", r);
 		
