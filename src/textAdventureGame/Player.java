@@ -64,7 +64,7 @@ public class Player {
 		// Get the damage points of the equipped item
 				int damage = 0;
 				if (equipedItem != null) {
-					for (Items item : itemMap.values()) {
+					for (Items item : Main.itemMap.values()) {
 						if (item.getItemName().equalsIgnoreCase(equipedItem)) {
 							damage = item.getItemDamage();
 							break;
