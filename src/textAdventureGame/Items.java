@@ -27,7 +27,7 @@ public class Items {
 				+ "the Kelp Queen, who now controls the Kelp Forrest, the Golem, who now controls the Caverns,\n and"
 				+ "the Krab, who now controls the Shipwreck.", 0); 
 		itemMap.put("notebook", it); 
-
+//dawd
 		it = new Items ("Healing Potion", "The potion is made out of phytoplankton", 0);
 		itemMap.put("healing potion", it);
 
