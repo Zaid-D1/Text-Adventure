@@ -14,6 +14,7 @@ public class Main {
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
 	static ArrayList<String> inventory = new ArrayList<String>();
 	static String currentRoom;
+	static Enemy currentEnemy;
 	static boolean isPlaying = true;
 
 	public static void main(String[] args) {
@@ -71,6 +72,7 @@ public class Main {
 				break; 
 			}
 		}
+
 	}
 
 	//This will crash if you move to a room that does not exist in the hashmap.
@@ -149,11 +151,43 @@ public class Main {
 			System.out.println("You have equiped " + item);
 		}
 	}
+
+
+	private static void attackEnemy() {
+	    Room currentRoom = roomList.get(Main.currentRoom);
+	    if(currentRoom.getEnemy() == null) {
+	        System.out.println("There is no enemy to attack.");
+	        return;
+	    }
+	    Enemy enemy = currentRoom.getEnemy();
+	    int damage = p.getDamage();
+	    int health = enemy.getHealth();
+	    int remainingHealth = health - damage;
+	    enemy.health(remainingHealth);
+	    System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+	    if(remainingHealth <= 0) {
+	        System.out.println("You defeated the " + enemy.getName() + "!");
+	        currentRoom.setEnemy(null);
+	        return;
+	    }
+	    System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
+	    int enemyDamage = enemy.getDamage();
+	    int playerHealth = p.getHealth();
+	    int remainingPlayerHealth = playerHealth - enemyDamage;
+	    p.setHealth(remainingPlayerHealth);
+	    System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
+	    if(remainingPlayerHealth <= 0) {
+	        System.out.println("You have been defeated by the " + enemy.getName() + "!");
+	        isPlaying = false;
+	    }
+	}
+
 	
 	//TODO
 	private static void attackEnemy(String enemy) { 
 		
 	}
+
 
 	//A method that just prints out the inventory array list.
 	private static void showInventory() {

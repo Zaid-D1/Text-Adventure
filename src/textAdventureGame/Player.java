@@ -42,7 +42,9 @@ public class Player {
 				Main.inventory.add("sling"); 
 			}
 		}
+
 	}
+
 	//Method that shows the damage taken by the player and also exits the program if the player is dead
 	public void takeDamage(int damage) {
 		health -= damage;
@@ -58,8 +60,23 @@ public class Player {
 		}
 	}
 
-
-
+	public int getDamage() {
+		// Get the damage points of the equipped item
+				int damage = 0;
+				if (equipedItem != null) {
+					for (Items item : itemMap.values()) {
+						if (item.getItemName().equalsIgnoreCase(equipedItem)) {
+							damage = item.getItemDamage();
+							break;
+						}
+					}
+				}
+				return damage;
+	}
+	
+	public void setHealth(int remainingPlayerHealth) {
+		health = remainingPlayerHealth;
+	}
 
 
 
