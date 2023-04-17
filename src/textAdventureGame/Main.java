@@ -85,7 +85,6 @@ public class Main {
 		}
 
 		currentRoom = newRoom;	
-		System.out.println("Current Room: " + currentRoom);
 		lookAtRoom(false);		
 	}
 
