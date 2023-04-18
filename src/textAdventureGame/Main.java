@@ -135,7 +135,8 @@ public class Main {
 		System.out.println("Controls: \n 1)'n', 's', 'w', 'e' - can move the player North, South, West, and East \n"
 				+ " 2)'pickup' or 'take' - put items in the inventory \n 3)'drop' - drops the item from your invenotry\n"
 				+ " 4)'i' or 'inventory' - opens the inventory\n 5)'look' - gives the title and a breif description "
-				+ "about the room\n 6)'inspect' - gives the item name and desciption of the item");
+				+ "about the room\n 6)'inspect' - gives the item name and desciption of the item\n 7)'equip' - takes the item from the"
+				+ "inventory and puts it in the players hand\n 8)'status' - shows the players health, description, the player level and the equiped item.");
 	}
 
 	//A method that shows the player status.
