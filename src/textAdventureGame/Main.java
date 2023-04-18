@@ -23,7 +23,7 @@ public class Main {
 
 		System.out.println();
 
-		//title(); 
+		title(); 
 		setup();
 
 		lookAtRoom(true);		
@@ -63,14 +63,17 @@ public class Main {
 				equipItem(words[1]); 
 				break; 
 			case "attack":
-				attackEnemy(words[1]);
+				attackEnemy();
+				break; 
+			default:
+				System.out.println("Don't understand " + words[0]);
+			}
+
+			if(currentRoom.equals("Shipwreck - Boss Room") && enemiesMap.get("skeleton pirate captain").getHealth() == 0) { //Whatever room the final boss is in.
+				System.out.println("You have deafeated all three bosses and have protected the Ocean Kingdom. Thank you for playing.");
 				break; 
 			}
 			
-			if(currentRoom.equals("Shipwreck - Boss Room") && enemiesMap.get("skeleton pirate captain").getHealth() == 0) { //Whatever room the final boss is in.
-				System.out.println("You have overtaken all three bosses and have protected the Ocean Kingdom. Thank you for playing.");
-				break; 
-			}
 		}
 
 	}
@@ -153,40 +156,33 @@ public class Main {
 
 
 	private static void attackEnemy() {
-	    Room currentRoom = roomList.get(Main.currentRoom);
-	    if(currentRoom.getEnemy() == null) {
-	        System.out.println("There is no enemy to attack.");
-	        return;
-	    }
-	    Enemy enemy = currentRoom.getEnemy();
-	    int damage = p.getDamage();
-	    int health = enemy.getHealth();
-	    int remainingHealth = health - damage;
-	    enemy.health(remainingHealth);
-	    System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
-	    if(remainingHealth <= 0) {
-	        System.out.println("You defeated the " + enemy.getName() + "!");
-	        currentRoom.setEnemy(null);
-	        return;
-	    }
-	    System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
-	    int enemyDamage = enemy.getDamage();
-	    int playerHealth = p.getHealth();
-	    int remainingPlayerHealth = playerHealth - enemyDamage;
-	    p.setHealth(remainingPlayerHealth);
-	    System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
-	    if(remainingPlayerHealth <= 0) {
-	        System.out.println("You have been defeated by the " + enemy.getName() + "!");
-	        isPlaying = false;
-	    }
+		Room currentRoom = roomList.get(Main.currentRoom);
+		if(currentRoom.getEnemy() == null) {
+			System.out.println("There is no enemy to attack.");
+			return;
+		}
+		Enemy enemy = currentRoom.getEnemy();
+		int damage = p.getDamage();
+		int health = enemy.getHealth();
+		int remainingHealth = health - damage;
+		enemy.health(remainingHealth);
+		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+		if(remainingHealth <= 0) {
+			System.out.println("You defeated the " + enemy.getName() + "!");
+			currentRoom.setEnemy(null);
+			return;
+		}
+		System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
+		int enemyDamage = enemy.getDamage();
+		int playerHealth = p.getHealth();
+		int remainingPlayerHealth = playerHealth - enemyDamage;
+		p.setHealth(remainingPlayerHealth);
+		System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
+		if(remainingPlayerHealth <= 0) {
+			System.out.println("You have been defeated by the " + enemy.getName() + "!");
+			isPlaying = false;
+		}
 	}
-
-	
-	//TODO
-	private static void attackEnemy(String enemy) { 
-		
-	}
-
 
 	//A method that just prints out the inventory array list.
 	private static void showInventory() {
@@ -208,23 +204,23 @@ public class Main {
 		Enemy.setupEnemies(enemiesMap);
 	}
 
-	//	static void title() {
-	//		//Used a website that can convert any sentence or words into ASCII Art (pretty cool), here is the 
-	//		//URL: https://patorjk.com/software/taag/#p=display&h=1&v=0&f=Big&t=Under%20the%20Sea
-	//		String title = "  _    _             _               _    _              _____              \r\n"
-	//				+ " | |  | |           | |             | |  | |            / ____|             \r\n"
-	//				+ " | |  | | _ __    __| |  ___  _ __  | |_ | |__    ___  | (___    ___   __ _ \r\n"
-	//				+ " | |  | || '_ \\  / _` | / _ \\| '__| | __|| '_ \\  / _ \\  \\___ \\  / _ \\ / _` |\r\n"
-	//				+ " | |__| || | | || (_| ||  __/| |    | |_ | | | ||  __/  ____) ||  __/| (_| |\r\n"
-	//				+ "  \\____/ |_| |_| \\__,_| \\___||_|     \\__||_| |_| \\___| |_____/  \\___| \\__,_|\r\n"
-	//				+ "                                                                            \r\n"
-	//				+ "                                                                            ";
-	//
-	//		for(int i = 0; i < title.length(); i++) {
-	//			System.out.print(title.charAt(i));
-	// 
-	//		}
-	//		System.out.println();
-	//	}
+	static void title() {
+		//Used a website that can convert any sentence or words into ASCII Art (pretty cool), here is the 
+		//URL: https://patorjk.com/software/taag/#p=display&h=1&v=0&f=Big&t=Under%20the%20Sea
+		String title = "  ___      _                 _                                __   _   __      _ \r\n"
+				+ " / _ \\    | |               | |                              / _| | | / /     (_)\r\n"
+				+ "/ /_\\ \\ __| |_   _____ _ __ | |_ _   _ _ __ ___  ___    ___ | |_  | |/ /  __ _ _ \r\n"
+				+ "|  _  |/ _` \\ \\ / / _ \\ '_ \\| __| | | | '__/ _ \\/ __|  / _ \\|  _| |    \\ / _` | |\r\n"
+				+ "| | | | (_| |\\ V /  __/ | | | |_| |_| | | |  __/\\__ \\ | (_) | |   | |\\  \\ (_| | |\r\n"
+				+ "\\_| |_/\\__,_| \\_/ \\___|_| |_|\\__|\\__,_|_|  \\___||___/  \\___/|_|   \\_| \\_/\\__,_|_|\r\n"
+				+ "                                                                                 \r\n"
+				+ "                                                                                 ";
+
+		for(int i = 0; i < title.length(); i++) {
+			System.out.print(title.charAt(i));
+
+		}
+		System.out.println();
+	}
 
 }
