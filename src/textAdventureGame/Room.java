@@ -104,6 +104,11 @@ class Room {
 
 
 	 Enemy getEnemy() {
+		
+		if (Main.currentRoom.equals("Kelp forest")) {
+			return new Enemy("Baby Piranha", 20, 2, "Kelp forest");
+		}
+		 
 		if(Main.currentRoom.equals("Kelp forrest - Boss Room")) {
 			return new Enemy("Mother Piranha", 50, 10, "Kelp forest");
 		}
