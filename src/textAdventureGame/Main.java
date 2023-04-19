@@ -167,13 +167,15 @@ public class Main {
 		}
 		
 		Enemy enemy = currentRoom.getEnemy();
-		int damage = p.getDamage();
+		int damage = itemMap.get(p.equipedItem).getItemDamage();
 		int health = enemy.getHealth();
 		int remainingHealth = health - damage;
 		enemy.health(remainingHealth);
 		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+		
 		if(remainingHealth <= 0) {
 			System.out.println("You defeated the " + enemy.getName() + "!");
+			Player.levelUp();
 			currentRoom.setEnemy(null);
 			return;
 		}

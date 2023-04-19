@@ -23,27 +23,25 @@ public class Player {
 	int getHealth() {return health;}
 
 	//A method that allows the player to level up once they have defeated a boss in a specific room. 
-	static void levelUp(HashMap<String, Enemy> enemiesMap, String enemy) {
-		if(enemiesMap.get(enemy).getHealth() <= 0) {
-			//Updates the player level
-			int playerOrginalLevel = Main.p.getLevel(); 
-			int playerNewLevel = playerOrginalLevel++; 
-			playerOrginalLevel = playerNewLevel; 
-			System.out.println("You have leveled up to level " + playerNewLevel);
+	static void levelUp() {
+		//Updates the player level
+		int playerOrginalLevel = Main.p.getLevel(); 
+		int playerNewLevel = playerOrginalLevel++; 
+		playerOrginalLevel = playerNewLevel; 
+		System.out.println("You have leveled up to level " + playerNewLevel);
 
-			//Lets the rock evolve into a new weapon depending on what room the player is in. 
-			if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {
-				Main.inventory.remove(Main.inventory.indexOf("rock")); 
-				Main.inventory.add("spear"); 
-			}
-			
-			if(Main.currentRoom.equals("Ocean - Boss Room")) {
-				Main.inventory.remove(Main.inventory.indexOf("spear")); 
-				Main.inventory.add("sling"); 
-			}
+		//Lets the rock evolve into a new weapon depending on what room the player is in. 
+		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {
+			Main.inventory.remove(Main.inventory.indexOf("rock")); 
+			Main.inventory.add("spear"); 
 		}
 
+		if(Main.currentRoom.equals("Ocean - Boss Room")) {
+			Main.inventory.remove(Main.inventory.indexOf("spear")); 
+			Main.inventory.add("sling"); 
+		}
 	}
+
 
 	//Method that shows the damage taken by the player and also exits the program if the player is dead
 	public void takeDamage(int damage) {
@@ -62,18 +60,18 @@ public class Player {
 
 	public int getDamage() {
 		// Get the damage points of the equipped item
-				int damage = 0;
-				if (equipedItem != null) {
-					for (Items item : Main.itemMap.values()) {
-						if (item.getItemName().equalsIgnoreCase(equipedItem)) {
-							damage = item.getItemDamage();
-							break;
-						}
-					}
+		int damage = 0;
+		if (equipedItem != null) {
+			for (Items item : Main.itemMap.values()) {
+				if (item.getItemName().equalsIgnoreCase(equipedItem)) {
+					damage = item.getItemDamage();
+					break;
 				}
-				return damage;
+			}
+		}
+		return damage;
 	}
-	
+
 	public void setHealth(int remainingPlayerHealth) {
 		health = remainingPlayerHealth;
 	}
