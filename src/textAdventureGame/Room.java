@@ -103,20 +103,39 @@ class Room {
 	}
 
 
+//	 Enemy getEnemy() {
+//		if(Main.currentRoom.equals("Kelp forrest - Boss Room")) {
+//			return new Enemy("Mother Piranha", 50, 10, "Kelp forest");
+//		}
+//		else if(Main.currentRoom.equals("Cave - Boss Room")) {
+//			return new Enemy("Giant Kraken", 100, 20, "Cave");
+//		}
+//		else if(Main.currentRoom.equals("Shipwreck - Boss Room")) {
+//			return new Enemy("Deadly Pirate Captain", 75, 15, "Shipwreck");
+//		}
+//		else {
+//			return null;
+//		}
+//	}
+	 
 	 Enemy getEnemy() {
-		if(Main.currentRoom.equals("Kelp forrest - Boss Room")) {
-			return new Enemy("Mother Piranha", 50, 10, "Kelp forest");
-		}
-		else if(Main.currentRoom.equals("Cave - Boss Room")) {
-			return new Enemy("Giant Kraken", 100, 20, "Cave");
-		}
-		else if(Main.currentRoom.equals("Shipwreck - Boss Room")) {
-			return new Enemy("Deadly Pirate Captain", 75, 15, "Shipwreck");
-		}
-		else {
-			return null;
-		}
-	}
+		 switch(Main.currentRoom) {
+		 case "Kelp forest":
+			 return new Enemy("Baby Piranha", 20, 2, "Kelp forest");
+		 case "Kelp forrest - Boss Room":
+			 return new Enemy("Mother Piranha", 50, 10, "Kelp forest");
+		 case "Cave":
+			 return new Enemy("Eels", 30, 7, "Cave");
+		 case "Boss Room - The Cave":
+			 return new Enemy("Giant Kraken", 100, 20, "Boss Room - The Cave");
+		 case "Shipwreck":
+			 return new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
+		 case "Boss Room - Shipwreck":
+			 return new Enemy("Skeleton Pirate Captain", 200, 30, "Boss Room - Shipwreck");
+		default: 
+			return null; 
+		 }
+	 }
 
 
 	public void setEnemy(Object object) {

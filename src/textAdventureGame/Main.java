@@ -65,6 +65,9 @@ public class Main {
 			case "attack":
 				attackEnemy();
 				break; 
+			case "quit":
+				System.out.println("Thanks for playing.");
+				System.exit(0);
 			default:
 				System.out.println("Don't understand " + words[0]);
 			}
@@ -122,7 +125,7 @@ public class Main {
 
 	//A method that will return the name and description of the inspected item. 
 	private static void inspectItem(String item) {
-		if(inventory.contains(item)) {
+		if(inventory.contains(item) || p.equipedItem.equals(item)) {
 			System.out.println("Item Name: " + itemMap.get(item).getItemName());
 			System.out.println("Item Description: " + itemMap.get(item).getItemDesc());
 			System.out.println("Damage: " + itemMap.get(item).getItemDamage());
@@ -162,6 +165,7 @@ public class Main {
 			System.out.println("There is no enemy to attack.");
 			return;
 		}
+		
 		Enemy enemy = currentRoom.getEnemy();
 		int damage = p.getDamage();
 		int health = enemy.getHealth();
@@ -173,12 +177,14 @@ public class Main {
 			currentRoom.setEnemy(null);
 			return;
 		}
+		
 		System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
 		int enemyDamage = enemy.getDamage();
 		int playerHealth = p.getHealth();
 		int remainingPlayerHealth = playerHealth - enemyDamage;
 		p.setHealth(remainingPlayerHealth);
 		System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
+		
 		if(remainingPlayerHealth <= 0) {
 			System.out.println("You have been defeated by the " + enemy.getName() + "!");
 			isPlaying = false;
