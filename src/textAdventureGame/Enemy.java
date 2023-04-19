@@ -61,9 +61,8 @@ public class Enemy {
 		return room;
 	}
 	
-	public void health(int remainingHealth) {
+	public void setEnemyHealth(int remainingHealth) {
 		health = remainingHealth;
-		
 	}	
 
 		public String getName() {
