@@ -38,7 +38,7 @@ public class Main {
 			case "north": case "south": case "west": case "east": case "up": case "down":
 				moveToRoom(words[0].charAt(0));
 				break;
-			case "pickup": case "take": case "get": 
+			case "pickup": case "take": case "get": case "pick up":
 				addItems(words[1]);
 				break;
 			case "drop":

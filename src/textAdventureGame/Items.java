@@ -28,7 +28,7 @@ public class Items {
 				+ "Mother Piranha, Giant Kraken, who now controls the Caverns, and "
 				+ "Skeleton Pirate Captain.", 0); 
 		itemMap.put("notebook", it); 
-//dawd
+
 		it = new Items ("Healing Potion", "The potion is made out of phytoplankton", 0);
 		itemMap.put("healing potion", it);
 		
@@ -46,7 +46,7 @@ public class Items {
 		itemMap.put("rock", it);
 
 		it = new Items("Spear", "A strudy and sharp weapon with it's shaft made out of wood and the head made out of "
-				+ "the Rock.", 20); 
+				+ "the carved rock.", 20); 
 		itemMap.put("spear", it);
 
 		it = new Items("Sling", "The bow is forged out of some fishing line and some wood that came of the "
