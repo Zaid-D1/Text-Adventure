@@ -168,6 +168,7 @@ public class Main {
 		
 		Enemy enemy = currentRoom.getEnemy();
 		int damage = itemMap.get(p.equipedItem).getItemDamage();
+		//if statment 
 		int health = enemy.getHealth();
 		int remainingHealth = health - damage;
 		enemy.health(remainingHealth);
