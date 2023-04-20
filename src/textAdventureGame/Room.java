@@ -49,7 +49,7 @@ class Room {
 		r = new Room("The Kelp forrest", "You see giant kelp all around, a water proof notebook. "
 				+ "There are a few baby piranhas that you need to fight, west takes you back to the still waters"
 				+ "A path leads south to a mysterious portal");
-		r.setExits("", "", "still waters", "ocean");
+		r.setExits("", "", "", "ocean");
 		roomList.put("Kelp forest", r);
 
 		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"

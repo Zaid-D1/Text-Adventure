@@ -13,6 +13,7 @@ public class Enemy {
 	private int damage;
 	private String room;
 
+
 	Enemy(String name, int health, int damage, String room) {
 		this.name = name;
 		this.health = health;
