@@ -28,7 +28,7 @@ public class Player {
 		int playerOrginalLevel = Main.p.getLevel(); 
 		int playerNewLevel = playerOrginalLevel++; 
 		playerOrginalLevel = playerNewLevel; 
-		System.out.println("You have leveled up to level " + playerNewLevel);
+		System.out.println("You have leveled up to level " + playerOrginalLevel);
 
 		//Lets the rock evolve into a new weapon depending on what room the player is in. 
 		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {
