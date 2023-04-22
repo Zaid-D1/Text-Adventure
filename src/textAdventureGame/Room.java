@@ -46,7 +46,7 @@ class Room {
 		r.setExits("", "Kelp forest", "Shipwreck", "Cave");
 		roomList.put("ocean", r);
 
-		r = new Room("The Kelp forrest", "You see giant kelp all around, a water proof notebook. "
+		r = new Room("The Kelp forrest", "You see giant kelp all around, a water proof notebook, and one medicine. "
 				+ "There are a few baby piranhas that you need to fight, west takes you back to the still waters"
 				+ "A path leads south to a mysterious portal");
 		r.setExits("", "", "", "ocean");
@@ -87,13 +87,14 @@ class Room {
 		}
 		
 		//All of the items associated with Kelp Forrest.
-		if(Main.currentRoom.equals("Kelp forrest")) {
-			roomList.get("Kelp forrest").itemList.add("healing potion");
+		if(Main.currentRoom.equals("Kelp forest")) {
+			roomList.get("Kelp forest").itemList.add("medicine");
 	
 		}
 		
 		//All of the items associated with The Cave.
 		if(Main.currentRoom.equals("The Cave")) {
+			roomList.get("The Cave").itemList.add("shrimp"); 
 			
 		}
 		//All of the items associated with Ship Wreck. 

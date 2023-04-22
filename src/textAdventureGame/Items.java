@@ -7,8 +7,6 @@ public class Items {
 	private String name; 
 	private	String description;  
 	private int damagePoints = 0; 
-	private int attackResistance; 
-
 
 	Items (String n, String d, int damage){
 		name = n; 
@@ -29,8 +27,8 @@ public class Items {
 				+ "Skeleton Pirate Captain.", 0); 
 		itemMap.put("notebook", it); 
 
-		it = new Items ("Healing Potion", "The potion is made out of phytoplankton", 0);
-		itemMap.put("healing potion", it);
+		it = new Items ("Medicine", "The medicine is made out of phytoplankton", 0);
+		itemMap.put("medicine", it);
 		
 		it = new Items("Shrimp", "", 0);
 		itemMap.put("shrimp", it);

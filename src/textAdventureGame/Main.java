@@ -68,6 +68,10 @@ public class Main {
 			case "quit":
 				System.out.println("Thanks for playing.");
 				System.exit(0);
+				break;
+			case "use":
+				useItem(words[1]);
+				break;
 			default:
 				System.out.println("Don't understand " + words[0]);
 			}
@@ -146,7 +150,8 @@ public class Main {
 				+ " 2)'pickup' or 'take' - put items in the inventory \n 3)'drop' - drops the item from your invenotry\n"
 				+ " 4)'i' or 'inventory' - opens the inventory\n 5)'look' - gives the title and a breif description "
 				+ "about the room\n 6)'inspect' - gives the item name and desciption of the item\n 7)'equip' - takes the item from the"
-				+ "inventory and puts it in the players hand\n 8)'status' - shows the players health, description, the player level and the equiped item.");
+				+ "inventory and puts it in the players hand\n 8)'status' - shows the players health, description, the player level and the equiped item."
+				+ "\n 9)'use' - allows the player to use the item");
 	}
 
 	//A method that shows the player status.
@@ -181,7 +186,7 @@ public class Main {
 		int health = enemy.getHealth();
 		int remainingHealth = health - damage;
 
-		enemy.health(remainingHealth);
+		enemy.setEnemyHealth(remainingHealth);
 		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
 
 		if(remainingHealth <= 0) {
@@ -201,6 +206,24 @@ public class Main {
 		if(remainingPlayerHealth <= 0) {
 			System.out.println("You have been defeated by the " + enemy.getName() + "!");
 			isPlaying = false;
+		}
+	}
+	
+	private static void useItem(String item) {
+		if(inventory.contains(item)) {
+			if(item.equals("medicine")) {
+				int healthHealed = 100; 
+				p.setHealth(healthHealed);
+				System.out.println("The medicine has regenerated your health.");
+			}
+			else if(item.equals("shrimp")) {
+				int healthHealed = 100;
+				p.setHealth(healthHealed);
+				System.out.println("The shrimp has regerated your health.");
+			}
+			else {
+				System.out.println("Can't use " + item);
+			}
 		}
 	}
 
