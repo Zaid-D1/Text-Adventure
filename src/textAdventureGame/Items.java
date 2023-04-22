@@ -34,12 +34,6 @@ public class Items {
 		
 		it = new Items("Shrimp", "", 0);
 		itemMap.put("shrimp", it);
-		
-		it = new Items ("Helmet", "", 0);
-		itemMap.put("helmet", it); 
-		
-		it = new Items ("Chest Plate", "", 0);
-		itemMap.put("chest plate", it);
 
 		//Damage Items
 		it = new Items("Rock", "A rock that has some magic aura.", 10); 

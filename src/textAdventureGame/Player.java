@@ -22,23 +22,40 @@ public class Player {
 	int getLevel() {return level;}
 	int getHealth() {return health;}
 
-	//A method that allows the player to level up once they have defeated a boss in a specific room. 
-	static void levelUp() {
+	//A method that allows the player to level up once they have defeated a boss or a common enemy in a specific room. 
+	static void levelUp(String item) {
 		//Updates the player level
-		int playerOrginalLevel = Main.p.getLevel(); 
-		int playerNewLevel = playerOrginalLevel++; 
-		playerOrginalLevel = playerNewLevel; 
-		System.out.println("You have leveled up to level " + playerOrginalLevel);
+		int playerLevel = Main.p.getLevel(); 
+		int newPlayerLevel = 0; 
+
+		playerLevel = newPlayerLevel + 1; 
+		Main.p.setLevel(playerLevel);
+		System.out.println("You have leveled up to level " + playerLevel);
 
 		//Lets the rock evolve into a new weapon depending on what room the player is in. 
 		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {
-			Main.inventory.remove(Main.inventory.indexOf("rock")); 
-			Main.inventory.add("spear"); 
+
+			if(Main.p.equipedItem.equals("rock")) {
+				Main.p.equipedItem = "spear"; 
+				System.out.println("The magic rock in your hand has evolved into a spear.");
+			}
+			else {
+				Main.inventory.remove(Main.inventory.indexOf("rock")); 
+				Main.inventory.add("spear"); 
+				System.out.println("Your rock has evolved into a spear. CHeck your inventory!"); 
+			} 
 		}
 
 		if(Main.currentRoom.equals("Ocean - Boss Room")) {
-			Main.inventory.remove(Main.inventory.indexOf("spear")); 
-			Main.inventory.add("sling"); 
+			if(Main.p.equipedItem.equals("spear")) {
+				Main.p.equipedItem = "sling"; 
+				System.out.println("The magic rock in your hand has evolved into a sling.");
+			}
+			else {
+				Main.inventory.remove(Main.inventory.indexOf("spear")); 
+				Main.inventory.add("sling"); 
+				System.out.println("Your spear has evolved into a sling. Check your inventory!");
+			}
 		}
 	}
 
@@ -74,6 +91,10 @@ public class Player {
 
 	public void setHealth(int remainingPlayerHealth) {
 		health = remainingPlayerHealth;
+	}
+
+	public void setLevel(int playerNewLevel) {
+		level = playerNewLevel;
 	}
 
 

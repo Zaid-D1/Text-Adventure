@@ -38,10 +38,10 @@ class Room {
 
 	//ONLY done at the beginning of the game
 	static void setupRooms(HashMap<String,Room> roomList) {
-		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a forrest to the east,"
-				+ "A Cave to the West, and A Shipwreck all the way at the bottom of the ocean"
-				+ "North is out of water, if you go north the seagulls will eat you because you are small, "
-				+ "you see a rock stuck on a coral");
+		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a forrest to the east, "
+				+ "a cave to the West, and a shipwreck all the way at the bottom of the ocean. "
+				+ "North is out of water, if you go north the seagulls will eat you because you are small. "
+				+ "You see a rock stuck on a coral");
 		//          N E S W
 		r.setExits("", "Kelp forest", "Shipwreck", "Cave");
 		roomList.put("ocean", r);
@@ -101,37 +101,21 @@ class Room {
 			
 		}
 	}
-
-
-//	 Enemy getEnemy() {
-//		if(Main.currentRoom.equals("Kelp forrest - Boss Room")) {
-//			return new Enemy("Mother Piranha", 50, 10, "Kelp forest");
-//		}
-//		else if(Main.currentRoom.equals("Cave - Boss Room")) {
-//			return new Enemy("Giant Kraken", 100, 20, "Cave");
-//		}
-//		else if(Main.currentRoom.equals("Shipwreck - Boss Room")) {
-//			return new Enemy("Deadly Pirate Captain", 75, 15, "Shipwreck");
-//		}
-//		else {
-//			return null;
-//		}
-//	}
 	 
 	 Enemy getEnemy() {
 		 switch(Main.currentRoom) {
 		 case "Kelp forest":
-			 return new Enemy("Baby Piranha", 20, 2, "Kelp forest");
+			 return Main.enemiesMap.get("Baby Piranha");
 		 case "Kelp forrest - Boss Room":
-			 return new Enemy("Mother Piranha", 50, 10, "Kelp forest");
+			 return Main.enemiesMap.get("Mother Piranha");
 		 case "Cave":
-			 return new Enemy("Eels", 30, 7, "Cave");
+			 return Main.enemiesMap.get("Eels");
 		 case "Boss Room - The Cave":
-			 return new Enemy("Giant Kraken", 100, 20, "Boss Room - The Cave");
+			 return Main.enemiesMap.get("Giant Kraken");
 		 case "Shipwreck":
-			 return new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
+			 return Main.enemiesMap.get("skeleton pirates");
 		 case "Boss Room - Shipwreck":
-			 return new Enemy("Skeleton Pirate Captain", 200, 30, "Boss Room - Shipwreck");
+			 return Main.enemiesMap.get("skeleton pirate captain");
 		default: 
 			return null; 
 		 }
