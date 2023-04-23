@@ -158,74 +158,38 @@ public class Main {
 		}
 	}
 
-
 	private static void attackEnemy() {
-			Room currentRoom = roomList.get(Main.currentRoom);
+		Room currentRoom = roomList.get(Main.currentRoom);
 
-			if(currentRoom.getEnemy() == null) {
-				System.out.println("There is no enemy to attack.");
-				return;
-			}
-
-			Enemy enemy = currentRoom.getEnemy();
-			int damage = itemMap.get(p.equipedItem).getItemDamage();
-			int health = enemy.getHealth();
-			int remainingHealth = health - damage;
-			enemy.setEnemyHealth(remainingHealth);
-			System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
-
-			if(remainingHealth <= 0) {
-				System.out.println("You defeated the " + enemy.getName() + "!");
-				Player.levelUp();
-				currentRoom.setEnemy(null);
-				return;
-			}
-
-			System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
-			int enemyDamage = enemy.getDamage();
-			int playerHealth = p.getHealth();
-			int remainingPlayerHealth = playerHealth - enemyDamage;
-			p.setHealth(remainingPlayerHealth);
-			System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
-
-			if(remainingPlayerHealth <= 0) {
-				System.out.println("You have been defeated by the " + enemy.getName() + "!");
-				isPlaying = false;
-			}
+		if(currentRoom.getEnemy() == null) {
+			System.out.println("There is no enemy to attack.");
+			return;
 		}
 
 		Enemy enemy = currentRoom.getEnemy();
+		int damage = itemMap.get(p.equipedItem).getItemDamage();
+		int health = enemy.getHealth();
+		int remainingHealth = health - damage;
+		enemy.setEnemyHealth(remainingHealth);
+		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
 
-		try {
-			int damage = itemMap.get(p.equipedItem).getItemDamage();
-			int health = enemy.getHealth();
-			System.out.println("Enemy Health: " + health);
-			int remainingHealth = health - damage;
-			System.out.println("Enemy Remaining Health: " + remainingHealth);
+		if(remainingHealth <= 0) {
+			System.out.println("You defeated the " + enemy.getName() + "!");
+			Player.levelUp();
+			currentRoom.setEnemy(null);
+			return;
+		}
 
-			enemy.health(remainingHealth);
-			System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+		System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
+		int enemyDamage = enemy.getDamage();
+		int playerHealth = p.getHealth();
+		int remainingPlayerHealth = playerHealth - enemyDamage;
+		p.setHealth(remainingPlayerHealth);
+		System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
 
-			if(remainingHealth <= 0) {
-				System.out.println("You defeated the " + enemy.getName() + "!");
-				Player.levelUp();
-				currentRoom.setEnemy(null);
-				return;
-			}
-
-			System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
-			int enemyDamage = enemy.getDamage();
-			int playerHealth = p.getHealth();
-			int remainingPlayerHealth = playerHealth - enemyDamage;
-			p.setHealth(remainingPlayerHealth);
-			System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
-
-			if(remainingPlayerHealth <= 0) {
-				System.out.println("You have been defeated by the " + enemy.getName() + "!");
-				isPlaying = false;
-			}
-		}catch(NullPointerException e) {
-			System.out.println("Need to equip a weapon inorder to attack");
+		if(remainingPlayerHealth <= 0) {
+			System.out.println("You have been defeated by the " + enemy.getName() + "!");
+			isPlaying = false;
 		}
 	}
 

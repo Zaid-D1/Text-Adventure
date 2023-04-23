@@ -26,19 +26,35 @@ public class Player {
 	static void levelUp() {
 		//Updates the player level
 		int playerOrginalLevel = Main.p.getLevel(); 
-		int playerNewLevel = playerOrginalLevel++; 
-		playerOrginalLevel = playerNewLevel; 
+		 playerOrginalLevel =  playerOrginalLevel + 1; 
+		 Main.p.setLevel(playerOrginalLevel);
 		System.out.println("You have leveled up to level " + playerOrginalLevel);
 
 		//Lets the rock evolve into a new weapon depending on what room the player is in. 
 		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {
-			Main.inventory.remove(Main.inventory.indexOf("rock")); 
-			Main.inventory.add("spear"); 
+			
+			if(Main.p.equipedItem.equals("rock")) {
+				Main.p.equipedItem = "spear"; 
+				System.out.println("The rock in your hand has evolved into a spear!");
+			}
+			else {
+				Main.inventory.remove(Main.inventory.indexOf("rock")); 
+				Main.inventory.add("spear");
+				System.out.println("The rock has evolved into a spear! Check your inventory.");
+			}
 		}
 
 		if(Main.currentRoom.equals("Ocean - Boss Room")) {
-			Main.inventory.remove(Main.inventory.indexOf("spear")); 
-			Main.inventory.add("sling"); 
+			if(Main.p.equipedItem.equals("spear")) {
+				Main.p.equipedItem = "sling"; 
+				System.out.println("The spear in your hand has evolved into a sling!");
+			}
+			else {
+				Main.inventory.remove(Main.inventory.indexOf("spear")); 
+				Main.inventory.add("sling"); 
+				System.out.println("The spear has evolved into a sling! Check your inventory.");
+			}
+			 
 		}
 	}
 
@@ -74,6 +90,10 @@ public class Player {
 
 	public void setHealth(int remainingPlayerHealth) {
 		health = remainingPlayerHealth;
+	}
+	
+	public void setLevel(int playerNewLevel) {
+		level = playerNewLevel; 
 	}
 
 
