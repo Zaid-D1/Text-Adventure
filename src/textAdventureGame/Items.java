@@ -27,11 +27,11 @@ public class Items {
 				+ "Skeleton Pirate Captain.", 0); 
 		itemMap.put("notebook", it); 
 
-		it = new Items ("Medicine", "The medicine is made out of phytoplankton", 0);
-		itemMap.put("medicine", it);
+		it = new Items ("Milk", "A warm glass of milk.", 0);
+		itemMap.put("milk", it);
 		
-		it = new Items("Shrimp", "", 0);
-		itemMap.put("shrimp", it);
+		it = new Items("KoolAid", "A nice cold glass of Kool-Aid.", 0);
+		itemMap.put("KoolAid", it);
 
 		//Damage Items
 		it = new Items("Rock", "A rock that has some magic aura.", 10); 

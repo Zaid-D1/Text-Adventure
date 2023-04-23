@@ -182,41 +182,48 @@ public class Main {
 
 		Enemy enemy = currentRoom.getEnemy();
 
-		int damage = itemMap.get(p.equipedItem).getItemDamage();
-		int health = enemy.getHealth();
-		int remainingHealth = health - damage;
+		try {
 
-		enemy.setEnemyHealth(remainingHealth);
-		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+			int damage = itemMap.get(p.equipedItem).getItemDamage();
 
-		if(remainingHealth <= 0) {
-			System.out.println("You defeated the " + enemy.getName() + "!");
-			Player.levelUp(p.equipedItem);
-			currentRoom.setEnemy(null);
-			return;
+			int health = enemy.getHealth();
+			int remainingHealth = health - damage;
+
+			enemy.setEnemyHealth(remainingHealth);
+			System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+
+			if(remainingHealth <= 0) {
+				System.out.println("You defeated the " + enemy.getName() + "!");
+				Player.levelUp(p.equipedItem);
+				currentRoom.setEnemy(null);
+				return;
+			}
+
+			System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
+			int enemyDamage = enemy.getDamage();
+			int playerHealth = p.getHealth();
+			int remainingPlayerHealth = playerHealth - enemyDamage;
+			p.setHealth(remainingPlayerHealth);
+			System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
+
+			if(remainingPlayerHealth <= 0) {
+				System.out.println("You have been defeated by the " + enemy.getName() + "!");
+				isPlaying = false;
+			}
 		}
-
-		System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
-		int enemyDamage = enemy.getDamage();
-		int playerHealth = p.getHealth();
-		int remainingPlayerHealth = playerHealth - enemyDamage;
-		p.setHealth(remainingPlayerHealth);
-		System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
-
-		if(remainingPlayerHealth <= 0) {
-			System.out.println("You have been defeated by the " + enemy.getName() + "!");
-			isPlaying = false;
+		catch(NullPointerException e) {
+			System.out.println("You can't attack an enemy without an equiped weapon.");
 		}
 	}
-	
+
 	private static void useItem(String item) {
 		if(inventory.contains(item)) {
-			if(item.equals("medicine")) {
+			if(item.equals("milk")) {
 				int healthHealed = 100; 
 				p.setHealth(healthHealed);
 				System.out.println("The medicine has regenerated your health.");
 			}
-			else if(item.equals("shrimp")) {
+			else if(item.equals("KoolAid")) {
 				int healthHealed = 100;
 				p.setHealth(healthHealed);
 				System.out.println("The shrimp has regerated your health.");
