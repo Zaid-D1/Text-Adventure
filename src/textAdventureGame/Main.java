@@ -187,13 +187,6 @@ public class Main {
 		enemy.setEnemyHealth(remainingHealth);
 		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
 
-		int damage = itemMap.get(p.equipedItem).getItemDamage();
-		int health = enemy.getHealth();
-		int remainingHealth = health - damage;
-
-		enemy.setEnemyHealth(remainingHealth);
-		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
-
 		if(remainingHealth <= 0) {
 			System.out.println("You defeated the " + enemy.getName() + "!");
 			Player.levelUp(p.equipedItem);

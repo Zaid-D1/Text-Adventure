@@ -92,10 +92,6 @@ public class Player {
 	public void setHealth(int remainingPlayerHealth) {
 		health = remainingPlayerHealth;
 	}
-	
-	public void setLevel(int playerNewLevel) {
-		level = playerNewLevel; 
-	}
 
 	public void setLevel(int playerNewLevel) {
 		level = playerNewLevel;
