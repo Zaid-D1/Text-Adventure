@@ -38,15 +38,15 @@ class Room {
 
 	//ONLY done at the beginning of the game
 	static void setupRooms(HashMap<String,Room> roomList) {
-		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a forrest to the east,"
-				+ "A Cave to the West, and A Shipwreck all the way at the bottom of the ocean"
-				+ "North is out of water, if you go north the seagulls will eat you because you are small, "
-				+ "you see a rock stuck on a coral");
+		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a forrest to the east, "
+				+ "a cave to the West, and a shipwreck all the way at the bottom of the ocean. "
+				+ "North is out of water, if you go north the seagulls will eat you because you are small. "
+				+ "You see a rock stuck on a coral");
 		//          N E S W
 		r.setExits("", "Kelp forest", "Shipwreck", "Cave");
 		roomList.put("ocean", r);
 
-		r = new Room("The Kelp forrest", "You see giant kelp all around, a water proof notebook. "
+		r = new Room("The Kelp forrest", "You see giant kelp all around, a water proof notebook, and one medicine. "
 				+ "There are a few baby piranhas that you need to fight, west takes you back to the still waters"
 				+ "A path leads south to a mysterious portal");
 		r.setExits("", "", "", "ocean");
@@ -87,13 +87,14 @@ class Room {
 		}
 		
 		//All of the items associated with Kelp Forrest.
-		if(Main.currentRoom.equals("Kelp forrest")) {
-			roomList.get("Kelp forrest").itemList.add("healing potion");
+		if(Main.currentRoom.equals("Kelp forest")) {
+			roomList.get("Kelp forest").itemList.add("medicine");
 	
 		}
 		
 		//All of the items associated with The Cave.
 		if(Main.currentRoom.equals("The Cave")) {
+			roomList.get("The Cave").itemList.add("shrimp"); 
 			
 		}
 		//All of the items associated with Ship Wreck. 
@@ -107,15 +108,15 @@ class Room {
 		 case "Kelp forest":
 			 return Main.enemiesMap.get("Baby Piranha");
 		 case "Kelp forrest - Boss Room":
-			 return  Main.enemiesMap.get("Mother Piranha");
+			 return Main.enemiesMap.get("Mother Piranha");
 		 case "Cave":
-			 return  Main.enemiesMap.get("Eels");
+			 return Main.enemiesMap.get("Eels");
 		 case "Boss Room - The Cave":
-			 return  Main.enemiesMap.get("Giant Kraken");
+			 return Main.enemiesMap.get("Giant Kraken");
 		 case "Shipwreck":
-			 return  Main.enemiesMap.get("skeleton pirates");
+			 return Main.enemiesMap.get("skeleton pirates");
 		 case "Boss Room - Shipwreck":
-			 return  Main.enemiesMap.get("skeleton pirate captain");
+			 return Main.enemiesMap.get("skeleton pirate captain");
 		default: 
 			return null; 
 		 }
