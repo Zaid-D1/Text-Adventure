@@ -7,6 +7,7 @@ public class Items {
 	private String name; 
 	private	String description;  
 	private int damagePoints = 0; 
+	
 
 	Items (String n, String d, int damage){
 		name = n; 
@@ -14,9 +15,12 @@ public class Items {
 		damagePoints = damage; 
 	}
 	
+	
+	
 	String getItemName() {return name; }
 	String getItemDesc() {return description;}
 	int getItemDamage() {return damagePoints;}
+	
 
 	//Setting up all of the items in the game and putting them in a hash map. 
 	static void setupItems (HashMap <String, Items> itemMap) {
@@ -27,11 +31,11 @@ public class Items {
 				+ "Skeleton Pirate Captain.", 0); 
 		itemMap.put("notebook", it); 
 
-		it = new Items ("Medicine", "The medicine is made out of phytoplankton", 0);
-		itemMap.put("medicine", it);
+		it = new Items ("Caviar", "", 0);
+		itemMap.put("caviar", it);
 		
-		it = new Items("Shrimp", "", 0);
-		itemMap.put("shrimp", it);
+		it = new Items("KoolAid", "A nice cold glass of Kool-Aid.", 0);
+		itemMap.put("KoolAid", it);
 
 		//Damage Items
 		it = new Items("Rock", "A rock that has some magic aura.", 10); 
@@ -44,6 +48,7 @@ public class Items {
 		it = new Items("Sling", "The bow is forged out of some fishing line and some wood that came of the "
 				+ "shipwreck, and the arrow is made out of the Rock.", 30);
 		itemMap.put("sling", it);
+		
 
 	}
 

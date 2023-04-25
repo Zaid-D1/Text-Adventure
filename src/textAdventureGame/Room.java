@@ -7,6 +7,9 @@ class Room {
 	private String title;
 	private String description;	
 	private String N,E,S,W;
+	public static boolean isCaveLocked;
+	public static boolean isShipWreckLocked;
+
 
 	static ArrayList<String> itemList = new ArrayList<String>();
 
@@ -35,46 +38,46 @@ class Room {
 
 	String getTitle() {return title;}
 	String getDesc() {return description;}
+	boolean isCavelocked() {return isCaveLocked;}
+	boolean isShipwrecklocked() {return isShipWreckLocked;}
 
 	//ONLY done at the beginning of the game
 	static void setupRooms(HashMap<String,Room> roomList) {
-		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a forrest to the east, "
-				+ "a cave to the West, and a shipwreck all the way at the bottom of the ocean. "
+		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a Kelp forest to the east, "
 				+ "North is out of water, if you go north the seagulls will eat you because you are small. "
 				+ "You see a rock stuck on a coral");
 		//          N E S W
 		r.setExits("", "Kelp forest", "Shipwreck", "Cave");
 		roomList.put("ocean", r);
 
-		r = new Room("The Kelp forrest", "You see giant kelp all around, a water proof notebook, and one medicine. "
-				+ "There are a few baby piranhas that you need to fight, west takes you back to the still waters"
-				+ "A path leads south to a mysterious portal");
-		r.setExits("", "", "", "ocean");
+		r = new Room("The Kelp forest", "You see giant kelp all around, a water proof notebook, and caviar. "
+				+ "There are a few baby piranhas that you need to fight, west takes you back to the Ocean.");
+		r.setExits("", "", "Kelp Forest - Boss Room", "ocean");
 		roomList.put("Kelp forest", r);
 
 		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"
 				+ "There are a few skelton pirates on board, You see a door on deck towards the ships kitchen"
-				+ "Still waters (North), a path leads west to a mysterious portal"); 
-		r.setExits("still waters", "", "", "Cave");
+				+ "Ocean(North)"); 
+		r.setExits("ocean", "", "", "Cave");
 		roomList.put("Shipwreck", r);
-		
+
 		r = new Room("The Cave", "dark and gloomy, open your water proof flashlight to look around"
-				+ "Becareful, there are a few eels here and there, Still waters (east), Kelp forest (east x2),"
+				+ "Becareful, there are a few eels here and there, Ocean(east), Kelp forest (east x2),"
 				+ "A path leads north to a mysterious portal"); 
-		r.setExits("Shipwreck", "Kelp forrest", "", "");
+		r.setExits("Cave - Boss Room", "ocean", "", "");
 		roomList.put("Cave", r);
-		
+
 		//boss rooms for each main room	
 		r = new Room("The Kelp Forest - Boss Room", "A mother piranha awaits you. Brace yourself for an epic battle!");
-		r.setExits("", "", "", "");
+		r.setExits("Kelp forest", "", "", "");
 		roomList.put("Kelp Forest - Boss Room", r);
-		
+
 		r = new Room("Cave - Boss Room", "A giant kraken blocks your way. Prepare for a fierce battle!");
 		r.setExits("", "", "", "");
-		roomList.put("Ocean - Boss Room", r);
-		
+		roomList.put("Cave - Boss Room", r);
+
 		r = new Room("Shipwreck - Boss Room", "A deadly pirate captain");
-		
+
 	}
 
 
@@ -82,45 +85,44 @@ class Room {
 	static void setupItems(HashMap<String,Room> roomList, ArrayList<String> itemList) {
 		//All of the items associated with the Ocean room.
 		if(Main.currentRoom.equals("ocean")) {
-			roomList.get("ocean").itemList.add("notebook");
 			roomList.get("ocean").itemList.add("rock"); 
 		}
-		
+
 		//All of the items associated with Kelp Forrest.
 		if(Main.currentRoom.equals("Kelp forest")) {
-			roomList.get("Kelp forest").itemList.add("medicine");
-	
+			roomList.get("Kelp forest").itemList.add("caviar");
+
 		}
-		
+
 		//All of the items associated with The Cave.
 		if(Main.currentRoom.equals("The Cave")) {
-			roomList.get("The Cave").itemList.add("shrimp"); 
-			
+			roomList.get("The Cave").itemList.add("KoolAid"); 
+
 		}
 		//All of the items associated with Ship Wreck. 
 		if(Main.currentRoom.equals("Ship wreck")) {
-			
+
 		}
 	}
-	 
-	 Enemy getEnemy() {
-		 switch(Main.currentRoom) {
-		 case "Kelp forest":
-			 return Main.enemiesMap.get("Baby Piranha");
-		 case "Kelp forrest - Boss Room":
-			 return Main.enemiesMap.get("Mother Piranha");
-		 case "Cave":
-			 return Main.enemiesMap.get("Eels");
-		 case "Boss Room - The Cave":
-			 return Main.enemiesMap.get("Giant Kraken");
-		 case "Shipwreck":
-			 return Main.enemiesMap.get("skeleton pirates");
-		 case "Boss Room - Shipwreck":
-			 return Main.enemiesMap.get("skeleton pirate captain");
-		default: 
-			return null; 
-		 }
-	 }
+
+	Enemy getEnemy() {
+		switch(Main.currentRoom) {
+			case "Kelp forest":
+				return Main.enemiesMap.get("Baby Piranha");
+			case "Kelp Forest - Boss Room":
+				return Main.enemiesMap.get("Mother Piranha");
+			case "Cave":
+				return Main.enemiesMap.get("Eels");
+			case "Boss Room - The Cave":
+				return Main.enemiesMap.get("Giant Kraken");
+			case "Shipwreck":
+				return Main.enemiesMap.get("skeleton pirates");
+			case "Boss Room - Shipwreck":
+				return Main.enemiesMap.get("skeleton pirate captain");
+			default: 
+				return null; 
+		}
+	}
 
 
 	public void setEnemy(Object object) {

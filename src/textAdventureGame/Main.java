@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
 
 	// ===GLOBAL VARIABLES===
-	static Player p = new Player("Player 1", 0, 100, "");
+	static Player p = new Player("Player 1", 100, "");
 	static HashMap <String, Enemy> enemiesMap = new HashMap <String, Enemy>();
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
@@ -38,7 +38,7 @@ public class Main {
 			case "north": case "south": case "west": case "east": case "up": case "down":
 				moveToRoom(words[0].charAt(0));
 				break;
-			case "pickup": case "take": case "get": case "pick up":
+			case "pickup": case "take": case "get":
 				addItems(words[1]);
 				break;
 			case "drop":
@@ -95,15 +95,50 @@ public class Main {
 		}
 
 		currentRoom = newRoom;	
-		lookAtRoom(false);		
+		lookAtRoom(false);	
+		
+		if (currentRoom.equals("Cave") && Room.isCaveLocked) {
+		    if (enemiesMap.get("Mother Piranha").getHealth() > 0) {
+		        System.out.println("The door is locked. You need to defeat the Kelp Forest boss to unlock it.");
+		        return;
+		    }
+		    else {
+		        System.out.println("You have unlocked the door to the Cave.");
+		        Room.isCaveLocked = false;
+		    }
+		}
+		
+		if (currentRoom.equals("Shipwreck") && Room.isShipWreckLocked) {
+		    if (enemiesMap.get("Giant Kraken").getHealth() > 0) {
+		        System.out.println("The door is locked. You need to defeat the Cave boss to unlock it.");
+		        return;
+		    }
+		    else {
+		        System.out.println("You have unlocked the door to the Shipwreck.");
+		        Room.isShipWreckLocked = false;
+		    }
+		}
+
+
 	}
 
 	private static void lookAtRoom(boolean b) {
-		Room rm = roomList.get(currentRoom);
-		System.out.println("\n== " + rm.getTitle() + " ==");
-		System.out.println(rm.getDesc());	
+	    Room rm = roomList.get(currentRoom);
+	    System.out.println("\n== " + rm.getTitle() + " ==");
 
+	    if (currentRoom.equals("Cave") && Room.isCaveLocked) {
+	        System.out.println("The door to the Cave is locked.");
+	        return;
+	    }
+
+	    if (currentRoom.equals("Shipwreck") && Room.isShipWreckLocked) {
+	        System.out.println("The door to the Shipwreck is locked.");
+	        return;
+	    }
+
+	    System.out.println(rm.getDesc());
 	}
+
 
 	//When a player types in "pickup" it calls the addItems method that add elements to the array list.
 	private static void addItems(String item) {
@@ -115,7 +150,15 @@ public class Main {
 		if(Room.itemList.contains(item)) {
 			Room.itemList.remove(Room.itemList.indexOf(item)); 
 			inventory.add(item);
-			System.out.println("You acquired " + item + ". Make sure to equip the item when fighting."); 
+			
+			if(itemMap.get(item).getItemDamage() == 0) {
+				System.out.println("You acquired " + item);	
+			}
+			
+			if(itemMap.get(item).getItemDamage() > 0) {
+				System.out.println("You acquired " + item + ". Make sure to equip the item when attacking an enemy.");
+			}
+			
 		}
 		else System.out.println("You can't pickup " + item);
 	}
@@ -157,8 +200,7 @@ public class Main {
 	//A method that shows the player status.
 	private static void showPlayerSatus() {
 		System.out.println("Name: " + p.getName());
-		System.out.println("Level: " + p.getLevel());
-		System.out.println("Helath: " + p.getHealth());
+		System.out.println("Health: " + p.getHealth());
 		System.out.println("Equiped Item: " + p.equipedItem);
 	}
 
@@ -187,34 +229,58 @@ public class Main {
 		enemy.setEnemyHealth(remainingHealth);
 		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
 
-		if(remainingHealth <= 0) {
-			System.out.println("You defeated the " + enemy.getName() + "!");
-			Player.levelUp(p.equipedItem);
-			currentRoom.setEnemy(null);
-			return;
+			int health = enemy.getHealth();
+			int remainingHealth = health - damage;
+
+			enemy.setEnemyHealth(remainingHealth);
+			System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+
+			if(remainingHealth <= 0) {
+				System.out.println("You defeated the " + enemy.getName() + "!");
+				if (enemiesMap.get("Baby Piranha").getHealth() == 0) {
+					System.out.println("You've unlocked the portal to the kelp forest boss room!, go south and be prepared!");
+				}
+				if (enemiesMap.get("Eels").getHealth() == 0) {
+					System.out.println("You've unlocked the cave boss room!, go north to face the boss");
+				}
+				if (enemiesMap.get("Mother Piranha").getHealth() == 0) {
+					System.out.println("You've unlocked the Cave!, go back to the Ocean and then go west");
+				}
+			
+			if (enemiesMap.get("Giant Kraken").getHealth() == 0) {
+				System.out.println("You've unlocked the final destination, ShipWreck!!, go back to the Ocean(");
+			}
+				
+				Player.levelUpItem(p.equipedItem);
+				currentRoom.setEnemy(null);
+				return;
+			}
+
+			System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
+			int enemyDamage = enemy.getDamage();
+			int playerHealth = p.getHealth();
+			int remainingPlayerHealth = playerHealth - enemyDamage;
+			p.setHealth(remainingPlayerHealth);
+			System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
+
+			if(remainingPlayerHealth <= 0) {
+				System.out.println("You have been defeated by the " + enemy.getName() + "!");
+				isPlaying = false;
+			}
 		}
-
-		System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
-		int enemyDamage = enemy.getDamage();
-		int playerHealth = p.getHealth();
-		int remainingPlayerHealth = playerHealth - enemyDamage;
-		p.setHealth(remainingPlayerHealth);
-		System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
-
-		if(remainingPlayerHealth <= 0) {
-			System.out.println("You have been defeated by the " + enemy.getName() + "!");
-			isPlaying = false;
+		catch(NullPointerException e) {
+			System.out.println("You can't attack an enemy without an equiped weapon.");
 		}
 	}
-	
+
 	private static void useItem(String item) {
 		if(inventory.contains(item)) {
-			if(item.equals("medicine")) {
+			if(item.equals("caviar")) {
 				int healthHealed = 100; 
 				p.setHealth(healthHealed);
 				System.out.println("The medicine has regenerated your health.");
 			}
-			else if(item.equals("shrimp")) {
+			else if(item.equals("KoolAid")) {
 				int healthHealed = 100;
 				p.setHealth(healthHealed);
 				System.out.println("The shrimp has regerated your health.");
@@ -243,6 +309,8 @@ public class Main {
 		Room.setupRooms(roomList);
 		Items.setupItems(itemMap);
 		Enemy.setupEnemies(enemiesMap);
+		Room.isCaveLocked = true;
+		Room.isShipWreckLocked = true;
 	}
 
 	static void title() {
