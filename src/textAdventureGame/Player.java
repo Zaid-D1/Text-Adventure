@@ -24,13 +24,6 @@ public class Player {
 
 	//A method that allows the player to level up once they have defeated a boss or a common enemy in a specific room. 
 	static void levelUp(String item) {
-		//Updates the player level
-		int playerLevel = Main.p.getLevel(); 
-		int newPlayerLevel = 0; 
-
-		playerLevel = newPlayerLevel + 1; 
-		Main.p.setLevel(playerLevel);
-		System.out.println("You have leveled up to level " + playerLevel);
 
 		//Lets the rock evolve into a new weapon depending on what room the player is in. 
 		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {

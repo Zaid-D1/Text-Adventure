@@ -38,7 +38,7 @@ public class Main {
 			case "north": case "south": case "west": case "east": case "up": case "down":
 				moveToRoom(words[0].charAt(0));
 				break;
-			case "pickup": case "take": case "get": case "pick up":
+			case "pickup": case "take": case "get":
 				addItems(words[1]);
 				break;
 			case "drop":
@@ -115,7 +115,15 @@ public class Main {
 		if(Room.itemList.contains(item)) {
 			Room.itemList.remove(Room.itemList.indexOf(item)); 
 			inventory.add(item);
-			System.out.println("You acquired " + item + ". Make sure to equip the item when fighting."); 
+			
+			if(itemMap.get(item).getItemDamage() == 0) {
+				System.out.println("You acquired " + item);	
+			}
+			
+			if(itemMap.get(item).getItemDamage() > 0) {
+				System.out.println("You acquired " + item + ". Make sure to equip the item when attacking an enemy.");
+			}
+			
 		}
 		else System.out.println("You can't pickup " + item);
 	}
@@ -194,6 +202,7 @@ public class Main {
 
 			if(remainingHealth <= 0) {
 				System.out.println("You defeated the " + enemy.getName() + "!");
+				
 				Player.levelUp(p.equipedItem);
 				currentRoom.setEnemy(null);
 				return;
