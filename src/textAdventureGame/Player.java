@@ -1,36 +1,26 @@
 package textAdventureGame;
 
-import java.util.HashMap;
 
 public class Player {
 
 	//Characteristics of a player
-	private String name; 
-	static int level; 
+	private String name;  
 	static int health;
 	String equipedItem; //the hand of the player
+	
 
-	Player(String n, int l, int h, String e){
+	Player(String n, int h, String e){
 		name = n; 
-		level = l; 
 		health = h; 
 		equipedItem = e; 
 	}
 
 	//Getting the players name, level, and health. 
 	String getName(){return name;}
-	int getLevel() {return level;}
 	int getHealth() {return health;}
 
 	//A method that allows the player to level up once they have defeated a boss or a common enemy in a specific room. 
-	static void levelUp(String item) {
-		//Updates the player level
-		int playerLevel = Main.p.getLevel(); 
-		int newPlayerLevel = 0; 
-
-		playerLevel = newPlayerLevel + 1; 
-		Main.p.setLevel(playerLevel);
-		System.out.println("You have leveled up to level " + playerLevel);
+	static void levelUpItem(String item) {
 
 		//Lets the rock evolve into a new weapon depending on what room the player is in. 
 		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {
@@ -92,10 +82,7 @@ public class Player {
 	public void setHealth(int remainingPlayerHealth) {
 		health = remainingPlayerHealth;
 	}
-
-	public void setLevel(int playerNewLevel) {
-		level = playerNewLevel;
-	}
+	
 
 
 

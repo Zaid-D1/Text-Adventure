@@ -31,7 +31,7 @@ public class Enemy {
 		e = new Enemy("Skeleton Pirates", 80, 15, "Shipwreck");
 		enemiesMap.put("skeleton pirates", e);
 
-		e = new Enemy("Mother Piranha", 50, 10, "Boss Room - Kelp forrest");
+		e = new Enemy("Mother Piranha", 50, 10, "Kelp Forest - Boss Room");
 		enemiesMap.put("Mother Piranha", e);
 
 		e = new Enemy("Giant Kraken", 100, 20, "Boss Room - The Cave");
