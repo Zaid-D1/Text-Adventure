@@ -20,7 +20,7 @@ public class Player {
 	int getHealth() {return health;}
 
 	//A method that allows the player to level up once they have defeated a boss or a common enemy in a specific room. 
-	static void levelUpItem(String item) {
+	static void levelUp(String item) {
 
 		//Lets the rock evolve into a new weapon depending on what room the player is in. 
 		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {

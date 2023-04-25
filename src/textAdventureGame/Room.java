@@ -85,7 +85,6 @@ class Room {
 	static void setupItems(HashMap<String,Room> roomList, ArrayList<String> itemList) {
 		//All of the items associated with the Ocean room.
 		if(Main.currentRoom.equals("ocean")) {
-			roomList.get("ocean").itemList.add("notebook");
 			roomList.get("ocean").itemList.add("rock"); 
 		}
 
