@@ -223,10 +223,11 @@ public class Main {
 		}
 
 		Enemy enemy = currentRoom.getEnemy();
-
-		try {
-
-			int damage = itemMap.get(p.equipedItem).getItemDamage();
+		int damage = itemMap.get(p.equipedItem).getItemDamage();
+		int health = enemy.getHealth();
+		int remainingHealth = health - damage;
+		enemy.setEnemyHealth(remainingHealth);
+		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
 
 			int health = enemy.getHealth();
 			int remainingHealth = health - damage;
