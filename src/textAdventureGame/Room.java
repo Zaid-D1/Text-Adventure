@@ -118,11 +118,11 @@ class Room {
 				return Main.enemiesMap.get("Mother Piranha");
 			case "Cave":
 				return Main.enemiesMap.get("Eels");
-			case "Boss Room - The Cave":
+			case "Cave - Boss Room":
 				return Main.enemiesMap.get("Giant Kraken");
 			case "Shipwreck":
 				return Main.enemiesMap.get("skeleton pirates");
-			case "Boss Room - Shipwreck":
+			case "Shipwreck - Boss Room":
 				return Main.enemiesMap.get("skeleton pirate captain");
 			default: 
 				return null; 

@@ -243,7 +243,7 @@ public class Main {
 					System.out.println("You've unlocked the portal to the kelp forest boss room!, go south and be prepared!");
 
 				}
-				if (enemiesMap.get("Eels").getHealth() <= 0 && Main.currentEnemy.equals("Cave")) {
+				if (enemiesMap.get("Eels").getHealth() <= 0 && Main.currentRoom.equals("Cave")) {
 					System.out.println("You've unlocked the cave boss room!, go north to face the boss");
 
 				}
@@ -256,7 +256,7 @@ public class Main {
 					System.out.println("You've unlocked the final destination, ShipWreck!, go back to the Ocean");
 
 				}
-				enemiesMap.remove(enemy.getName()); 
+				//enemiesMap.remove(enemy.getName()); 
 				return;
 			}
 
