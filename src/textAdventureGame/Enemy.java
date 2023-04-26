@@ -1,12 +1,14 @@
-package textAdventureGame;
+/* Prayag and Zaid
+ * April 25, 2023
+ * A class where it creates three common enemies and three bosses with each having a name, health points, damage, and the rooms there are in. 
+ */
 
+package textAdventureGame;
 import java.util.HashMap;
 
 public class Enemy {
 
-
 	static HashMap<String, Enemy> enemyList = new HashMap<String, Enemy>();
-
 
 	private String name;
 	private int health;

@@ -1,3 +1,9 @@
+/* Prayag and Zaid
+ * April 25, 2023
+ * A class that creates six item for the text adventure and each item having a name, description of the item, and the damage points. 
+ */
+
+
 package textAdventureGame;
 import java.util.HashMap;
 

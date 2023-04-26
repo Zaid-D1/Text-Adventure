@@ -1,5 +1,9 @@
-package textAdventureGame;
+/* Prayag and Zaid
+ * April 25, 2023
+ * A class that creates one player with a name, health and what items the player is equiped with. 
+ */
 
+package textAdventureGame;
 
 public class Player {
 
@@ -20,7 +24,7 @@ public class Player {
 	int getHealth() {return health;}
 
 	//A method that allows the player to level up once they have defeated a boss or a common enemy in a specific room. 
-	static void levelUp(String item) {
+	static void levelUpItem(String item) {
 
 		//Lets the rock evolve into a new weapon depending on what room the player is in. 
 		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {

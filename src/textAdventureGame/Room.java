@@ -1,9 +1,15 @@
+/* Prayag and Zaid
+ * April 25, 2023.
+ * A class where the rooms of the text adventure game is created as well as setting up specific enemies and items in the rooms. 
+ */
+
 package textAdventureGame;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 class Room {
 
+	//Instance Variables for Rooms
 	private String title;
 	private String description;	
 	private String N,E,S,W;
@@ -61,8 +67,8 @@ class Room {
 		r.setExits("ocean", "", "", "Cave");
 		roomList.put("Shipwreck", r);
 
-		r = new Room("The Cave", "dark and gloomy, open your water proof flashlight to look around"
-				+ "Becareful, there are a few eels here and there, Ocean(east), Kelp forest (east x2),"
+		r = new Room("The Cave", "Dark and gloomy, open your water proof flashlight to look around "
+				+ "Becareful, there are a few eels here and there, Ocean(east), Kelp forest (east x2), "
 				+ "A path leads north to a mysterious portal"); 
 		r.setExits("Cave - Boss Room", "ocean", "", "");
 		roomList.put("Cave", r);
@@ -91,7 +97,7 @@ class Room {
 		//All of the items associated with Kelp Forrest.
 		if(Main.currentRoom.equals("Kelp forest")) {
 			roomList.get("Kelp forest").itemList.add("caviar");
-
+			roomList.get("Kelp forest").itemList.add("notebook");
 		}
 
 		//All of the items associated with The Cave.
@@ -105,6 +111,7 @@ class Room {
 		}
 	}
 
+	// Gets the enemy from the enemiesMap depending in what room the player is currently present in. 
 	Enemy getEnemy() {
 		switch(Main.currentRoom) {
 			case "Kelp forest":
