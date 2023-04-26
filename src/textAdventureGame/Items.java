@@ -3,7 +3,6 @@
  * A class that creates six item for the text adventure and each item having a name, description of the item, and the damage points. 
  */
 
-
 package textAdventureGame;
 import java.util.HashMap;
 
@@ -21,23 +20,20 @@ public class Items {
 		damagePoints = damage; 
 	}
 	
-	
-	
 	String getItemName() {return name; }
 	String getItemDesc() {return description;}
 	int getItemDamage() {return damagePoints;}
-	
 
 	//Setting up all of the items in the game and putting them in a hash map. 
 	static void setupItems (HashMap <String, Items> itemMap) {
 
 		//Non-Damage Items
-		Items it = new Items("Notebook", "The Ocean Kingdom has been invaded by three outlaws of the kingdom: "
-				+ "Mother Piranha, Giant Kraken, who now controls the Caverns, and "
-				+ "Skeleton Pirate Captain.", 0); 
+		Items it = new Items("Notebook", "The Ocean Kingdom has been invaded by three outlaws: "
+				+ " the Mother Piranha, the Giant Kraken, and the Skeleton Pirate Captain. It's your duty to protect the people of "
+				+ "the Ocean Kingdom by slaying the outlaws. ", 0); 
 		itemMap.put("notebook", it); 
 
-		it = new Items ("Caviar", "", 0);
+		it = new Items ("Caviar", "Hmm the rich people food.", 0);
 		itemMap.put("caviar", it);
 		
 		it = new Items("KoolAid", "A nice cold glass of Kool-Aid.", 0);
@@ -48,16 +44,10 @@ public class Items {
 		itemMap.put("rock", it);
 
 		it = new Items("Spear", "A strudy and sharp weapon with it's shaft made out of wood and the head made out of "
-				+ "the carved rock.", 20); 
+				+ "the magic rock.", 20); 
 		itemMap.put("spear", it);
 
-		it = new Items("Sling", "The bow is forged out of some fishing line and some wood that came of the "
-				+ "shipwreck, and the arrow is made out of the Rock.", 30);
-		itemMap.put("sling", it);
-		
-
+		it = new Items("Sling", "The sling is a deadly weapon made out of rubber bands ", 30);
+		itemMap.put("sling", it);	
 	}
-
-
-
 }

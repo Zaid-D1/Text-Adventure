@@ -23,6 +23,16 @@ public class Enemy {
 		this.room = room;
 	}
 
+	//Getters 
+	public String getRoom() {return room;}
+	public String getName() {return name;}
+	public int getDamage() {return damage;}
+	public int getHealth() {return health;}
+
+	//Setters
+	public void setEnemyHealth(int remainingHealth) {health = remainingHealth;}
+
+	//Sets up the enemies
 	static void setupEnemies (HashMap<String, Enemy> enemiesMap) {
 		Enemy e = new Enemy("Baby Piranha", 20, 2, "Kelp forest");
 		enemiesMap.put("Baby Piranha", e);
@@ -52,34 +62,11 @@ public class Enemy {
 	public boolean isAlive() {
 		return health > 0;
 	}
-	
+
 	public void takeDamage(int damage) {
 		health -= damage;
 		if (!isAlive()) {
 			System.out.println(name + " has been defeated!");
 		}
-	}
-
-	public String getRoom() {
-		return room;
-	}
-	
-	public void setEnemyHealth(int remainingHealth) {
-		health = remainingHealth;
 	}	
-
-		public String getName() {
-			return name;
-		}
-
-		public int getDamage() {
-			return damage;
-		}
-
-		public int getHealth() {
-			return health;
-		}
-
-	
 }
-

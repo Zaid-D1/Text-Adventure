@@ -19,9 +19,24 @@ public class Player {
 		equipedItem = e; 
 	}
 
-	//Getting the players name, level, and health. 
+	//Getters
 	String getName(){return name;}
 	int getHealth() {return health;}
+	public int getDamage() {
+		// Get the damage points of the equipped item
+		int damage = 0;
+		if (equipedItem != null) {
+			for (Items item : Main.itemMap.values()) {
+				if (item.getItemName().equalsIgnoreCase(equipedItem)) {
+					damage = item.getItemDamage();
+					break;
+				}
+			}
+		}
+		return damage;
+	}
+	//Setter
+	public void setHealth(int remainingPlayerHealth) {health = remainingPlayerHealth;}
 
 	//A method that allows the player to level up once they have defeated a boss or a common enemy in a specific room. 
 	static void levelUpItem(String item) {
@@ -68,26 +83,4 @@ public class Player {
 			}
 		}
 	}
-
-	public int getDamage() {
-		// Get the damage points of the equipped item
-		int damage = 0;
-		if (equipedItem != null) {
-			for (Items item : Main.itemMap.values()) {
-				if (item.getItemName().equalsIgnoreCase(equipedItem)) {
-					damage = item.getItemDamage();
-					break;
-				}
-			}
-		}
-		return damage;
-	}
-
-	public void setHealth(int remainingPlayerHealth) {
-		health = remainingPlayerHealth;
-	}
-	
-
-
-
 }

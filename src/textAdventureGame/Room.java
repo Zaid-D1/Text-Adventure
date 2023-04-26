@@ -24,7 +24,6 @@ class Room {
 		description = d;
 	}
 
-
 	private void setExits(String N, String E, String S, String W) {
 		this.N = N;
 		this.E = E;
@@ -49,40 +48,39 @@ class Room {
 
 	//ONLY done at the beginning of the game
 	static void setupRooms(HashMap<String,Room> roomList) {
-		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a Kelp forest to the east, "
-				+ "North is out of water, if you go north the seagulls will eat you because you are small. "
-				+ "You see a rock stuck on a coral");
+		Room r = new Room("The Ocean", "The vast, and soundless ocean. There's a Kelp Forest to the east, "
+				+ "and if you go north the seagulls will eat you because you are small. "
+				+ "You see a rock stuck on a coral. ");
 		//          N E S W
 		r.setExits("", "Kelp forest", "Shipwreck", "Cave");
 		roomList.put("ocean", r);
 
-		r = new Room("The Kelp forest", "You see giant kelp all around, a water proof notebook, and caviar. "
-				+ "There are a few baby piranhas that you need to fight, west takes you back to the Ocean.");
+		r = new Room("The Kelp Forest", "You see giant kelp all around, a water proof notebook, and caviar. "
+				+ "There is a baby piranhas that's gaurding the notebook. West takes you back to the Ocean.");
 		r.setExits("", "", "Kelp Forest - Boss Room", "ocean");
 		roomList.put("Kelp forest", r);
 
-		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine,"
-				+ "There are a few skelton pirates on board, You see a door on deck towards the ships kitchen"
-				+ "Ocean(North)"); 
+		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine. "
+				+ "There is skelton pirates on board. You see a door on deck towards the ships kitchen. The Ocean is north. "); 
 		r.setExits("ocean", "", "", "Cave");
 		roomList.put("Shipwreck", r);
 
 		r = new Room("The Cave", "Dark and gloomy, open your water proof flashlight to look around "
-				+ "Becareful, there are a few eels here and there, Ocean(east), Kelp forest (east x2), "
+				+ "becareful, there is an eel. Ocean(east), Kelp forest (east x2). "
 				+ "A path leads north to a mysterious portal"); 
 		r.setExits("Cave - Boss Room", "ocean", "", "");
 		roomList.put("Cave", r);
 
 		//boss rooms for each main room	
-		r = new Room("The Kelp Forest - Boss Room", "A mother piranha awaits you. Brace yourself for an epic battle!");
+		r = new Room("The Kelp Forest - Boss Room", "The Mother Piranha awaits for you. Brace yourself for an epic battle!");
 		r.setExits("Kelp forest", "", "", "");
 		roomList.put("Kelp Forest - Boss Room", r);
 
-		r = new Room("Cave - Boss Room", "A giant kraken blocks your way. Prepare for a fierce battle!");
+		r = new Room("Cave - Boss Room", "The Giant Kraken blocks your way. Prepare for a fierce battle!");
 		r.setExits("", "", "", "");
 		roomList.put("Cave - Boss Room", r);
 
-		r = new Room("Shipwreck - Boss Room", "A deadly pirate captain");
+		r = new Room("Shipwreck - Boss Room", "The captain of the Skeleton Pirates, the most treacherous out of the three outlaws.");
 
 	}
 
@@ -130,7 +128,6 @@ class Room {
 				return null; 
 		}
 	}
-
 
 	public void setEnemy(Object object) {
 		if(Main.currentRoom.equals("Kelp forrest - Boss Room") || Main.currentRoom.equals("Cave - Boss Room") || Main.currentRoom.equals("Shipwreck - Boss Room")) {

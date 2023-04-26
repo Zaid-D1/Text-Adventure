@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
 
 	// ===GLOBAL VARIABLES===
-	static Player p = new Player("Player 1", 100, "");
+	static Player p = new Player("Kai", 100, "");
 	static HashMap <String, Enemy> enemiesMap = new HashMap <String, Enemy>();
 	static HashMap<String,Room> roomList = new HashMap<String, Room>();
 	static HashMap<String, Items> itemMap = new HashMap<String, Items>(); 
@@ -73,11 +73,11 @@ public class Main {
 				useItem(words[1]);
 				break;
 			default:
-				System.out.println("Don't understand " + words[0]);
+				System.out.println("Don't understand " + words[0] + ". ");
 			}
 
 			if(enemiesMap.get("skeleton pirate captain").getHealth() == 0) { //Whatever room the final boss is in.
-				System.out.println("You have deafeated all three bosses and have protected the Ocean Kingdom. Thank you for playing.");
+				System.out.println("You have defeated all three bosses and have protected the Ocean Kingdom. Thank you for playing.");
 				break; 
 			}
 
@@ -104,6 +104,7 @@ public class Main {
 			}
 			else {
 				System.out.println("You have unlocked the door to the Cave.");	
+				System.out.println();
 				System.out.println(roomList.get("Cave").getDesc());
 				Room.isCaveLocked = false;
 			}
@@ -116,6 +117,7 @@ public class Main {
 			}
 			else {
 				System.out.println("You have unlocked the door to the Shipwreck.");
+				System.out.println();
 				System.out.println(roomList.get("Shipwreck").getDesc());
 				Room.isShipWreckLocked = false;
 			}
@@ -152,48 +154,48 @@ public class Main {
 			inventory.add(item);
 
 			if(itemMap.get(item).getItemDamage() == 0) {
-				System.out.println("You acquired " + item);	
+				System.out.println("You have acquired " + item + ". ");	
 			}
 
 			if(itemMap.get(item).getItemDamage() > 0) {
-				System.out.println("You acquired " + item + ". Make sure to equip the item when attacking an enemy.");
+				System.out.println("You have acquired " + item + ". Make sure to equip the item before attacking an enemy.");
 			}
 
 		}
-		else System.out.println("You can't pickup " + item);
+		else System.out.println("You can't pickup " + item + ". ");
 	}
 
 	//A method that allows the player to drop any items from their inventory. 
 	private static void dropItem(String item) {
 
 		if(!p.equipedItem.equals("")) {
-			System.out.println("You have dropped your " + p.equipedItem);
+			System.out.println(p.equipedItem + " has been dropped. ");
 			p.equipedItem = ""; 
 		}
 		else {
 			inventory.remove(inventory.indexOf(item));
 			Room.itemList.add(item); 
-			System.out.println("You have dropped" + item);
+			System.out.println(item + " has been dropped. ");
 		}
 	}
 
 	//A method that will return the name and description of the inspected item. 
 	private static void inspectItem(String item) {
 		if(inventory.contains(item) || p.equipedItem.equals(item)) {
-			System.out.println("Item Name: " + itemMap.get(item).getItemName());
-			System.out.println("Item Description: " + itemMap.get(item).getItemDesc());
+			System.out.println("Name: " + itemMap.get(item).getItemName());
+			System.out.println("Description: " + itemMap.get(item).getItemDesc());
 			System.out.println("Damage: " + itemMap.get(item).getItemDamage());
 		}
-		else System.out.println("Can't inspect " + item);
+		else System.out.println("Can't inspect " + item + ". ");
 	}
 
 	//A method that will show the controls to a player if needed. 
 	private static void helpCommand(String n) {
-		System.out.println("Controls: \n 1)'n', 's', 'w', 'e' - can move the player North, South, West, and East \n"
+		System.out.println("Controls: \n 1)'n', 's', 'w', 'e' - can move the player north, south, west, and east \n"
 				+ " 2)'pickup' or 'take' - put items in the inventory \n 3)'drop' - drops the item from your invenotry\n"
-				+ " 4)'i' or 'inventory' - opens the inventory\n 5)'look' - gives the title and a breif description "
+				+ " 4)'i' or 'inventory' - opens the inventory\n 5)'look' - gives a title and a breif description "
 				+ "about the room\n 6)'inspect' - gives the item name and desciption of the item\n 7)'equip' - takes the item from the"
-				+ "inventory and puts it in the players hand\n 8)'status' - shows the players health, description, the player level and the equiped item."
+				+ "inventory and puts it in the players hand\n 8)'status' - shows the players health, description, and the equiped item."
 				+ "\n 9)'use' - allows the player to use the item");
 	}
 
@@ -218,7 +220,7 @@ public class Main {
 		Room currentRoom = roomList.get(Main.currentRoom);
 
 		if(currentRoom.getEnemy() == null) {
-			System.out.println("There is no enemy to attack.");
+			System.out.println("There are no enemies to attack.");
 			return;
 		}
 		
@@ -251,7 +253,7 @@ public class Main {
 			}
 
 			if (enemiesMap.get("Giant Kraken").getHealth() <= 0) {
-				System.out.println("You've unlocked the final destination, ShipWreck!!, go back to the Ocean(");
+				System.out.println("You've unlocked the final destination, ShipWreck!, go back to the Ocean");
 				
 			}
 			
@@ -296,7 +298,7 @@ private static void useItem(String item) {
 
 //A method that just prints out the inventory array list.
 private static void showInventory() {
-	System.out.println("Inventory: " + inventory);
+	System.out.println("Inventory:\n" + inventory.toString().replace("[", " ").replace("]", " "));
 }
 
 static Scanner sc = new Scanner(System.in);
