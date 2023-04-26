@@ -223,118 +223,117 @@ public class Main {
 			System.out.println("There are no enemies to attack.");
 			return;
 		}
-		
+
 		try {
 
-		Enemy enemy = currentRoom.getEnemy();
-		int damage = itemMap.get(p.equipedItem).getItemDamage();
-		int health = enemy.getHealth();
-		int remainingHealth = health - damage;
-		enemy.setEnemyHealth(remainingHealth);
-		System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
+			Enemy enemy = currentRoom.getEnemy();
+			int damage = itemMap.get(p.equipedItem).getItemDamage();
+			int health = enemy.getHealth();
+			int remainingHealth = health - damage;
+			enemy.setEnemyHealth(remainingHealth);
+			System.out.println("You attacked the " + enemy.getName() + " and dealt " + damage + " damage.");
 
-		if(remainingHealth <= 0) {
-			System.out.println("You defeated the " + enemy.getName() + "!");
-			Player.levelUpItem(p.equipedItem);
-			currentRoom.setEnemy(null);
-			
-			
-			if (enemiesMap.get("Baby Piranha").getHealth() <= 0) {
-				System.out.println("You've unlocked the portal to the kelp forest boss room!, go south and be prepared!");
-				
-			}
-			if (enemiesMap.get("Eels").getHealth() <= 0) {
-				System.out.println("You've unlocked the cave boss room!, go north to face the boss");
-				
-			}
-			if (enemiesMap.get("Mother Piranha").getHealth() <= 0) {
-				System.out.println("You've unlocked the Cave!, go back to the Ocean and then go west");
-				
+			if(remainingHealth <= 0) {
+				System.out.println("You defeated the " + enemy.getName() + "!");
+				Player.levelUpItem(p.equipedItem);
+				currentRoom.setEnemy(null);
+
+
+				if (enemiesMap.get("Baby Piranha").getHealth() <= 0 && Main.currentRoom.equals("Kelp forest")) {
+					System.out.println("You've unlocked the portal to the kelp forest boss room!, go south and be prepared!");
+
+				}
+				if (enemiesMap.get("Eels").getHealth() <= 0 && Main.currentEnemy.equals("Cave")) {
+					System.out.println("You've unlocked the cave boss room!, go north to face the boss");
+
+				}
+				if (enemiesMap.get("Mother Piranha").getHealth() <= 0 && Main.currentRoom.equals("Kelp Forest - Boss Room")) {
+					System.out.println("You've unlocked the Cave!, go back to the Ocean and then go west");
+
+				}
+
+				if (enemiesMap.get("Giant Kraken").getHealth() <= 0 && Main.currentRoom.equals("Boss Room - The Cave")) {
+					System.out.println("You've unlocked the final destination, ShipWreck!, go back to the Ocean");
+
+				}
+				return;
 			}
 
-			if (enemiesMap.get("Giant Kraken").getHealth() <= 0) {
-				System.out.println("You've unlocked the final destination, ShipWreck!, go back to the Ocean");
-				
+			System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
+			int enemyDamage = enemy.getDamage();
+			int playerHealth = p.getHealth();
+			int remainingPlayerHealth = playerHealth - enemyDamage;
+			p.setHealth(remainingPlayerHealth);
+			System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
+
+			if(remainingPlayerHealth <= 0) {
+				System.out.println("You have been defeated by the " + enemy.getName() + "!");
+				isPlaying = false;
 			}
-			
-			return;
 		}
-
-		System.out.println("The " + enemy.getName() + " has " + remainingHealth + " health remaining.");
-		int enemyDamage = enemy.getDamage();
-		int playerHealth = p.getHealth();
-		int remainingPlayerHealth = playerHealth - enemyDamage;
-		p.setHealth(remainingPlayerHealth);
-		System.out.println("The " + enemy.getName() + " attacked you and dealt " + enemyDamage + " damage.");
-
-		if(remainingPlayerHealth <= 0) {
-			System.out.println("You have been defeated by the " + enemy.getName() + "!");
-			isPlaying = false;
+		catch(NullPointerException e) {
+			System.out.println("You can't attack an enemy without an equiped weapon.");
 		}
 	}
-	catch(NullPointerException e) {
-		System.out.println("You can't attack an enemy without an equiped weapon.");
-	}
-}
 
 	// A method that allows the player to use the healing items to regenerate their health. 
-private static void useItem(String item) {
-	if(inventory.contains(item)) {
-		if(item.equals("caviar")) {
-			int healthHealed = 100; 
-			p.setHealth(healthHealed);
-			System.out.println("The caviar has regenerated your health.");
-		}
-		else if(item.equals("KoolAid")) {
-			int healthHealed = 100;
-			p.setHealth(healthHealed);
-			System.out.println("The KoolAid has regerated your health.");
-		}
-		else {
-			System.out.println("Can't use " + item);
+	private static void useItem(String item) {
+		if(inventory.contains(item)) {
+			if(item.equals("caviar")) {
+				int healthHealed = 100; 
+				p.setHealth(healthHealed);
+				System.out.println("The caviar has regenerated your health.");
+			}
+			else if(item.equals("KoolAid")) {
+				int healthHealed = 100;
+				p.setHealth(healthHealed);
+				System.out.println("The KoolAid has regerated your health.");
+			}
+			else {
+				System.out.println("Can't use " + item);
+			}
 		}
 	}
-}
 
-//A method that just prints out the inventory array list.
-private static void showInventory() {
-	System.out.println("Inventory:\n" + inventory.toString().replace("[", " ").replace("]", " "));
-}
-
-static Scanner sc = new Scanner(System.in);
-static String getCommand() {
-	System.out.print("=> ");		
-	String text = sc.nextLine();
-	if (text.length() == 0) text = "qwerty"; //default command		
-	return text;
-}
-
-static void setup() {
-	currentRoom = "ocean"; //where you start
-	Room.setupRooms(roomList);
-	Items.setupItems(itemMap);
-	Enemy.setupEnemies(enemiesMap);
-	Room.isCaveLocked = true;
-	Room.isShipWreckLocked = true;
-}
-
-static void title() {
-	//Used a website that can convert any sentence or words into ASCII Art (pretty cool), here is the 
-	//URL: https://patorjk.com/software/taag/#p=display&h=1&v=0&f=Big&t=Under%20the%20Sea
-	String title = "  ___      _                 _                                __   _   __      _ \r\n"
-			+ " / _ \\    | |               | |                              / _| | | / /     (_)\r\n"
-			+ "/ /_\\ \\ __| |_   _____ _ __ | |_ _   _ _ __ ___  ___    ___ | |_  | |/ /  __ _ _ \r\n"
-			+ "|  _  |/ _` \\ \\ / / _ \\ '_ \\| __| | | | '__/ _ \\/ __|  / _ \\|  _| |    \\ / _` | |\r\n"
-			+ "| | | | (_| |\\ V /  __/ | | | |_| |_| | | |  __/\\__ \\ | (_) | |   | |\\  \\ (_| | |\r\n"
-			+ "\\_| |_/\\__,_| \\_/ \\___|_| |_|\\__|\\__,_|_|  \\___||___/  \\___/|_|   \\_| \\_/\\__,_|_|\r\n"
-			+ "                                                                                 \r\n"
-			+ "                                                                                 ";
-
-	for(int i = 0; i < title.length(); i++) {
-		System.out.print(title.charAt(i));
-
+	//A method that just prints out the inventory array list.
+	private static void showInventory() {
+		System.out.println("Inventory:\n" + inventory.toString().replace("[", " ").replace("]", " "));
 	}
-	System.out.println();
-}
+
+	static Scanner sc = new Scanner(System.in);
+	static String getCommand() {
+		System.out.print("=> ");		
+		String text = sc.nextLine();
+		if (text.length() == 0) text = "qwerty"; //default command		
+		return text;
+	}
+
+	static void setup() {
+		currentRoom = "ocean"; //where you start
+		Room.setupRooms(roomList);
+		Items.setupItems(itemMap);
+		Enemy.setupEnemies(enemiesMap);
+		Room.isCaveLocked = true;
+		Room.isShipWreckLocked = true;
+	}
+
+	static void title() {
+		//Used a website that can convert any sentence or words into ASCII Art (pretty cool), here is the 
+		//URL: https://patorjk.com/software/taag/#p=display&h=1&v=0&f=Big&t=Under%20the%20Sea
+		String title = "  ___      _                 _                                __   _   __      _ \r\n"
+				+ " / _ \\    | |               | |                              / _| | | / /     (_)\r\n"
+				+ "/ /_\\ \\ __| |_   _____ _ __ | |_ _   _ _ __ ___  ___    ___ | |_  | |/ /  __ _ _ \r\n"
+				+ "|  _  |/ _` \\ \\ / / _ \\ '_ \\| __| | | | '__/ _ \\/ __|  / _ \\|  _| |    \\ / _` | |\r\n"
+				+ "| | | | (_| |\\ V /  __/ | | | |_| |_| | | |  __/\\__ \\ | (_) | |   | |\\  \\ (_| | |\r\n"
+				+ "\\_| |_/\\__,_| \\_/ \\___|_| |_|\\__|\\__,_|_|  \\___||___/  \\___/|_|   \\_| \\_/\\__,_|_|\r\n"
+				+ "                                                                                 \r\n"
+				+ "                                                                                 ";
+
+		for(int i = 0; i < title.length(); i++) {
+			System.out.print(title.charAt(i));
+
+		}
+		System.out.println();
+	}
 
 }
