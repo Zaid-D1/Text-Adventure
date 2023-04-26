@@ -256,6 +256,7 @@ public class Main {
 					System.out.println("You've unlocked the final destination, ShipWreck!, go back to the Ocean");
 
 				}
+				enemiesMap.remove(enemy.getName()); 
 				return;
 			}
 
