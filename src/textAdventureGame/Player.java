@@ -1,5 +1,9 @@
-package textAdventureGame;
+/* Prayag and Zaid
+ * April 25, 2023
+ * A class that creates one player with a name, health and what items the player is equiped with. 
+ */
 
+package textAdventureGame;
 
 public class Player {
 
@@ -15,12 +19,27 @@ public class Player {
 		equipedItem = e; 
 	}
 
-	//Getting the players name, level, and health. 
+	//Getters
 	String getName(){return name;}
 	int getHealth() {return health;}
+	public int getDamage() {
+		// Get the damage points of the equipped item
+		int damage = 0;
+		if (equipedItem != null) {
+			for (Items item : Main.itemMap.values()) {
+				if (item.getItemName().equalsIgnoreCase(equipedItem)) {
+					damage = item.getItemDamage();
+					break;
+				}
+			}
+		}
+		return damage;
+	}
+	//Setter
+	public void setHealth(int remainingPlayerHealth) {health = remainingPlayerHealth;}
 
 	//A method that allows the player to level up once they have defeated a boss or a common enemy in a specific room. 
-	static void levelUp(String item) {
+	static void levelUpItem(String item) {
 
 		//Lets the rock evolve into a new weapon depending on what room the player is in. 
 		if(Main.currentRoom.equals("Kelp Forest - Boss Room")) {
@@ -64,26 +83,4 @@ public class Player {
 			}
 		}
 	}
-
-	public int getDamage() {
-		// Get the damage points of the equipped item
-		int damage = 0;
-		if (equipedItem != null) {
-			for (Items item : Main.itemMap.values()) {
-				if (item.getItemName().equalsIgnoreCase(equipedItem)) {
-					damage = item.getItemDamage();
-					break;
-				}
-			}
-		}
-		return damage;
-	}
-
-	public void setHealth(int remainingPlayerHealth) {
-		health = remainingPlayerHealth;
-	}
-	
-
-
-
 }
