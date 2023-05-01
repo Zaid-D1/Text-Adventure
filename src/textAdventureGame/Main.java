@@ -247,12 +247,16 @@ public class Main {
 					System.out.println("You've unlocked the cave boss room!, go north to face the boss");
 
 				}
-				if (enemiesMap.get("Mother Piranha").getHealth() <= 0 && Main.currentRoom.equals("Kelp Forest - Boss Room")) {
+				if (enemiesMap.get("skeleton pirates").getHealth() <= 0 && Main.currentRoom.equals("Shipwreck")) {
+					System.out.println("You've unlocked the Shipwreck boss room!, go east to face the boss");
+
+				}
+				if (enemiesMap.get("Mother Piranha").getHealth() == 0 && Main.currentRoom.equals("Kelp Forest - Boss Room")) {
 					System.out.println("You've unlocked the Cave!, go back to the Ocean and then go west");
 
 				}
 
-				if (enemiesMap.get("Giant Kraken").getHealth() <= 0 && Main.currentRoom.equals("Boss Room - The Cave")) {
+				if (enemiesMap.get("Giant Kraken").getHealth() == 0 && Main.currentRoom.equals("Boss Room - The Cave")) {
 					System.out.println("You've unlocked the final destination, ShipWreck!, go back to the Ocean");
 
 				}
