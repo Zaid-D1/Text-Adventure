@@ -62,12 +62,11 @@ class Room {
 
 		r = new Room("Shipwreck", "Scary and somehow still in perfect conditon, the sails are torn but everything else is fine. "
 				+ "There is skelton pirates on board. You see a door on deck towards the ships kitchen. The Ocean is north. "); 
-		r.setExits("ocean", "", "", "Cave");
+		r.setExits("ocean", "Shipwreck - Boss Room", "", "");
 		roomList.put("Shipwreck", r);
 
 		r = new Room("The Cave", "Dark and gloomy, open your water proof flashlight to look around "
-				+ "becareful, there is an eel. Ocean(east), Kelp forest (east x2). "
-				+ "A path leads north to a mysterious portal"); 
+				+ "becareful, there is an eel. Ocean(east)"); 
 		r.setExits("Cave - Boss Room", "ocean", "", "");
 		roomList.put("Cave", r);
 
@@ -81,6 +80,7 @@ class Room {
 		roomList.put("Cave - Boss Room", r);
 
 		r = new Room("Shipwreck - Boss Room", "The captain of the Skeleton Pirates, the most treacherous out of the three outlaws.");
+
 
 	}
 
